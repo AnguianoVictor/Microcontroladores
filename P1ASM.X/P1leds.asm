@@ -1,12 +1,14 @@
-    ;PROCESSOR P16F887	
+    PROCESSOR P16F887	
     #include "p16f887.inc"
 
     ; CONFIG1
-    __CONFIG _CONFIG1, (_FOSC_INTRC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+    __CONFIG _CONFIG1,(_INTRC_OSC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
     ; CONFIG2
     __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
     
 VA  EQU 0x20			;Se sutituye la etiqueta por el registro 0x20
+VB	EQU 0x21
+VC  EQU 0x22
      
     ORG	    0x00		;Vector de restauracion
     
@@ -27,9 +29,29 @@ VA  EQU 0x20			;Se sutituye la etiqueta por el registro 0x20
     CLRF    TRISE		;Limpia el registro TRISE				    1ciclo
     
     BCF	    STATUS,RP0		;Se escribe 0 el bit RP0 del registro STATUS		    1ciclo
-    BCF	    STATUS,RP1		;Se escribe 0 el bit RP1 del registro STATUS		    1ciclo
-											    ;16ciclos = 16us
+    BCF	    STATUS,RP1		;Se escribe 0 el bit RP1 del registro STATUS		    1ciclo										    ;16ciclos = 16us
+
+RET	MOVLW	0x0A
+	MOVWF	VC	
+CVC	MOVLW	0x1A
+	MOVWF	VB
+CVB	MOVLW	0x03	
+	MOVWF	VA
+CVA	NOP
+	NOP
+	DECFSZ	VA,F
+	GOTO	CVA
+	DECFSZ	VB,F
+	GOTO	CVB
+	DECFSZ	VC,F	
+	GOTO 	CVC
+	RETURN
+
 CP  MOVF    PORTA,W		;Escribe en W lo que tenga el registro PORTA		    1ciclo
     MOVWF   PORTB		;Lee el registro W y lo escribe en el registro (PORTB)	    1ciclo
-    GOTO CP			    ;Regresa a la etiqueta CP				    2ciclo
-    END											    
+    CALL 	RET
+	GOTO 	CP			;Regresa a la etiqueta CP				    2ciclo
+    END		
+
+
+

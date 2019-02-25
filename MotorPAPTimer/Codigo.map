@@ -1,0 +1,57 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Sun Feb 24 21:31:48 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x0000a2
+    .config_2007_CODIGO.O       code   0x002007    program   0x000002
+    .config_2008_CODIGO.O       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000050      
+                            0x002007    0x002008      
+            83 out of 8455 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      ACX   0x00002a    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW01   0x000029    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW02   0x000027    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW04   0x000025    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW08   0x000023    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW16   0x000021    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                       CP   0x00000e    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                      DIR   0x00002b    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                      E_D   0x000049    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                    R_1ms   0x000047    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                    R_Xms   0x00004d    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     SINV   0x00003a    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                       CP   0x00000e    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW16   0x000021    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW08   0x000023    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW04   0x000025    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW02   0x000027    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     AW01   0x000029    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                      ACX   0x00002a    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                      DIR   0x00002b    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                     SINV   0x00003a    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                    R_1ms   0x000047    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                      E_D   0x000049    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+                    R_Xms   0x00004d    program     static C:\PIC_PROGS\MotorPAPTimer\Codigo.asm
+
+

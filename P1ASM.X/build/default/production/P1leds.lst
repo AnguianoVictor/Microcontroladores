@@ -1,4 +1,4 @@
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  1
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -18,10 +18,11 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00810         LIST
                       00003 
                       00004     ; CONFIG1
-2007   20D4           00005     __CONFIG _CONFIG1, (_FOSC_INTRC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF 
-                            & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+Error[113]  : Symbol not previously defined (_INTRC_NOCLKOUT)
+2007   0000           00005     __CONFIG _CONFIG1, _INTRC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOR
+                            _OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF
                       00006     ; CONFIG2
-2008   3FFF           00007     __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
+2008   3FFF           00007     __CONFIG _CONFIG2, _WRT_OFF & _BOR40V
                       00008     
   00000020            00009 VA  EQU 0x20                    ;Se sutituye la etiqueta por el registro 0x20
                       00010      
@@ -56,16 +57,16 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
                       00031                                                                                             ;16ciclos = 
                             16us
 000E   0805           00032 CP  MOVF    PORTA,W             ;Escribe en W lo que tenga el registro PORTA                1ciclo
-000F   0086           00033     MOVWF   PORTB               ;Lee el registro W y lo escribe en el registro (PORTB)      1ciclo
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  2
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
+000F   0086           00033     MOVWF   PORTB               ;Lee el registro W y lo escribe en el registro (PORTB)      1ciclo
 0010   2???           00034     GOTO CP                     ;Regresa a la etiqueta CP                                   2ciclo
-20D4 3FFF             00035     END                                                                                     
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  3
+0000 3FFF             00035     END         
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  3
 
 
 SYMBOL TABLE
@@ -124,7 +125,7 @@ BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
 BRG9                              00000001
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  4
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  4
 
 
 SYMBOL TABLE
@@ -183,7 +184,7 @@ CHS0                              00000002
 CHS1                              00000003
 CHS2                              00000004
 CHS3                              00000005
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  5
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  5
 
 
 SYMBOL TABLE
@@ -242,7 +243,7 @@ INTEDG                            00000006
 INTF                              00000001
 IOCB                              00000096
 IOCB0                             00000000
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  6
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  6
 
 
 SYMBOL TABLE
@@ -301,7 +302,7 @@ PCON                              0000008E
 PDC0                              00000000
 PDC1                              00000001
 PDC2                              00000002
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  7
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  7
 
 
 SYMBOL TABLE
@@ -360,7 +361,7 @@ RC1                               00000001
 RC2                               00000002
 RC3                               00000003
 RC4                               00000004
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  8
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  8
 
 
 SYMBOL TABLE
@@ -419,7 +420,7 @@ SSPCON                            00000014
 SSPCON2                           00000091
 SSPEN                             00000005
 SSPIE                             00000003
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  9
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE  9
 
 
 SYMBOL TABLE
@@ -478,7 +479,7 @@ TOUTPS2                           00000005
 TOUTPS3                           00000006
 TRISA                             00000085
 TRISA0                            00000000
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 10
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE 10
 
 
 SYMBOL TABLE
@@ -537,7 +538,7 @@ TXEN                              00000005
 TXIE                              00000004
 TXIF                              00000004
 TXREG                             00000019
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 11
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE 11
 
 
 SYMBOL TABLE
@@ -596,7 +597,7 @@ _BOR_SBODEN                       00003DFF
 _CONFIG1                          00002007
 _CONFIG2                          00002008
 _CPD_OFF                          00003FFF
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 12
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE 12
 
 
 SYMBOL TABLE
@@ -652,13 +653,13 @@ _WRT_OFF                          00003FFF
 _XT_OSC                           00003FF9
 __16F887                          00000001
 
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 13
+MPASM 5.82                        P1LEDS.ASM   2-11-2019  20:27:24         PAGE 13
 
 
 
 
 
-Errors   :     0
+Errors   :     1
 Warnings :     0 reported,     0 suppressed
 Messages :     8 reported,     0 suppressed
 

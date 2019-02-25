@@ -1,0 +1,9 @@
+Error[113]   C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 5 : Symbol not previously defined (_INTRC_NOCLKOUT)
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 16 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 17 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P1ASM.X\P1LEDS.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.

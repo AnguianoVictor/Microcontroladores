@@ -1,0 +1,10 @@
+Warning[215] C:\PIC_PROGS\P2ASM\MOTOR.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 21 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 28 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 30 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\P2ASM\MOTOR.ASM 31 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\PIC_PROGS\P2ASM\MOTOR.ASM 37 : Found label after column 1. (CP)

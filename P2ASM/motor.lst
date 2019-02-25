@@ -1,71 +1,170 @@
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  1
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00001     ;PROCESSOR P16F887  
-                      00002     #include "p16f887.inc"
+Warning[215]: Processor superseded by command line.  Verify processor symbol.
+                      00001         PROCESSOR P16F887       
+                      00002         #include "p16f887.inc"
                       00001         LIST
                       00002 
                       00003 ;==========================================================================
-                      00004 ; Build date : Sep 19 2018
-                      00005 ;  MPASM PIC16F887 processor include
-                      00006 ; 
-                      00007 ;  (c) Copyright 1999-2018 Microchip Technology, All rights reserved
-                      00008 ;==========================================================================
-                      00009 
-                      00810         LIST
+                      00004 ;  MPASM PIC16F887 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00809         LIST
                       00003 
-                      00004     ; CONFIG1
-2007   20D4           00005     __CONFIG _CONFIG1, (_FOSC_INTRC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF 
-                            & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
-                      00006     ; CONFIG2
-2008   3FFF           00007     __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
+                      00004         ; CONFIG1
+2007   20D4           00005         __CONFIG _CONFIG1,(_INTRC_OSC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OF
+                            F & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+                      00006         ; CONFIG2
+2008   3FFF           00007         __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
                       00008     
-  00000020            00009 VA  EQU 0x20                    ;Se sutituye la etiqueta por el registro 0x20
-                      00010      
-                      00011     ORG     0x00                ;Vector de restauracion
-                      00012     
-0000   1683           00013     BSF     STATUS,RP0          ;Se escribe 1 el bit RP0 del registro STATUS                1ciclo 
-0001   1703           00014     BSF     STATUS,RP1          ;Se escribe 1 el bit RP1 del registro STATUS                1ciclo 
-                      00015                                 ;Con esto nos posicionamos en el banco 3                    1ciclo
+  00000020            00009 VA      EQU 0x20                        ;Se sutituye la etiqueta por el registro 0x20
+  00000021            00010 VB              EQU 0x21
+  00000022            00011 VC      EQU 0x22
+  00000023            00012 NB              EQU     0x23
+  00000024            00013 CX              EQU     0x24
+                      00014          
+0000                  00015         ORG         0x00                ;Vector de restauracion
+                      00016     
+0000   1683           00017         BSF         STATUS,RP0          ;Se escribe 1 el bit RP0 del registro STATUS                1cic
+                            lo 
+0001   1703           00018         BSF         STATUS,RP1          ;Se escribe 1 el bit RP1 del registro STATUS                1cic
+                            lo 
+                      00019                                                                 ;Con esto nos posicionamos en el banco 3
+                                                1ciclo
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0002   0188           00016     CLRF    ANSEL               ;Se escribe 0x00 en el registro indicado (ANSEL)            1ciclo
+0002   0188           00020         CLRF    ANSEL                   ;Se escribe 0x00 en el registro indicado (ANSEL)            1cic
+                            lo
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0003   0189           00017     CLRF    ANSELH              ;Se escribe 0x00 en el registro indicado (ANSELH)           1ciclo
-                      00018     
-0004   1683           00019     BSF     STATUS,RP0          ;Se escribe 1 el bit RP0 del registro STATUS                1ciclo
-0005   1303           00020     BCF     STATUS,RP1          ;Se escribe 0 el bit RP0 del registro STATUS                1ciclo
-                      00021                                 ;Con esto nos posicionamos en el banco 1                    1ciclo
+0003   0189           00021         CLRF    ANSELH                  ;Se escribe 0x00 en el registro indicado (ANSELH)           1cic
+                            lo
+                      00022     
+0004   1683           00023         BSF         STATUS,RP0          ;Se escribe 1 el bit RP0 del registro STATUS                1cic
+                            lo
+0005   1303           00024         BCF         STATUS,RP1          ;Se escribe 0 el bit RP0 del registro STATUS                1cic
+                            lo
+                      00025                                                                 ;Con esto nos posicionamos en el banco 1
+                                                1ciclo
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0006   00FF           00022     MOVWF   0xFF                ;Escribe en el acumulador el valor 0xFF                     1ciclo
+0006   00FF           00026         MOVWF   0xFF                    ;Escribe en el acumulador el valor 0xFF                     1cic
+                            lo
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0007   0085           00023     MOVWF   TRISA               ;Mueve el valor del acumulador al registro TRISA            1ciclo
+0007   0085           00027         MOVWF   TRISA                   ;Mueve el valor del acumulador al registro TRISA            1cic
+                            lo
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0008   0186           00024     CLRF    TRISB               ;Limpia el registro TRISB                                   1ciclo
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0009   0187           00025     CLRF    TRISC               ;Limpia el registro TRISC                                   1ciclo
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000A   0188           00026     CLRF    TRISD               ;Limpia el registro TRISD                                   1ciclo
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000B   0189           00027     CLRF    TRISE               ;Limpia el registro TRISE                                   1ciclo
-                      00028     
-000C   1283           00029     BCF     STATUS,RP0          ;Se escribe 0 el bit RP0 del registro STATUS                1ciclo
-000D   1303           00030     BCF     STATUS,RP1          ;Se escribe 0 el bit RP1 del registro STATUS                1ciclo
-                      00031                                                                                             ;16ciclos = 
-                            16us
-000E   0805           00032 CP  MOVF    PORTA,W             ;Escribe en W lo que tenga el registro PORTA                1ciclo
-000F   0086           00033     MOVWF   PORTB               ;Lee el registro W y lo escribe en el registro (PORTB)      1ciclo
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  2
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0010   2???           00034     GOTO CP                     ;Regresa a la etiqueta CP                                   2ciclo
-20D4 3FFF             00035     END                                                                                     
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  3
+0008   0186           00028         CLRF    TRISB                   ;Limpia el registro TRISB                                   1cic
+                            lo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   0187           00029         CLRF    TRISC                   ;Limpia el registro TRISC                                   1cic
+                            lo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   0188           00030         CLRF    TRISD                   ;Limpia el registro TRISD                                   1cic
+                            lo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000B   0189           00031         CLRF    TRISE                   ;Limpia el registro TRISE                                   1cic
+                            lo
+                      00032     
+000C   1283           00033         BCF         STATUS,RP0          ;Se escribe 0 el bit RP0 del registro STATUS                1cic
+                            lo
+000D   1303           00034         BCF         STATUS,RP1          ;Se escribe 0 el bit RP1 del registro STATUS                1cic
+                            lo                                                                                  ;16ciclos = 
+                      00035 
+                      00036 
+Warning[207]: Found label after column 1. (CP)
+000E   0805           00037  CP     MOVF    PORTA,W                 ;Escribe en W lo que tenga el registro PORTA                1cic
+                            lo
+000F   390F           00038         ANDLW   0x0F    
+0010   00A3           00039                 MOVWF   NB
+0011   300F           00040                 MOVLW   0x0F
+0012   0223           00041                 SUBWF   NB,W
+0013   1903           00042                 BTFSC   STATUS,Z
+0014   2829           00043                 GOTO    AW01
+0015   3007           00044                 MOVLW   0x07
+0016   0223           00045                 SUBWF   NB,W
+0017   1903           00046                 BTFSC   STATUS,Z
+0018   2827           00047                 GOTO    AW02
+0019   3003           00048                 MOVLW   0x03
+001A   0223           00049                 SUBWF   NB,W
+001B   1903           00050                 BTFSC   STATUS,Z
+001C   2825           00051                 GOTO    AW04
+001D   3001           00052                 MOVLW   0x01
+001E   0223           00053                 SUBWF   NB,W
+001F   1903           00054                 BTFSC   STATUS,Z
+0020   2823           00055                 GOTO    AW08
+0021   3032           00056 AW16    MOVLW   0X32
+0022   282A           00057                 GOTO    ACX
+0023   3016           00058 AW08    MOVLW   0x16
+0024   282A           00059                 GOTO    ACX
+0025   3008           00060 AW04    MOVLW   0x08
+0026   282A           00061                 GOTO    ACX
+0027   3004           00062 AW02    MOVLW   0x04
+0028   282A           00063                 GOTO    ACX
+0029   3001           00064 AW01    MOVLW   0x01
+002A   00A4           00065 ACX             MOVWF   CX
+                      00066 
+002B   1B85           00067 DIR             BTFSC   PORTA,RA7
+002C   283A           00068                 GOTO    SINV
+002D   3008           00069                 MOVLW   0X08
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002E   0086           00070                 MOVWF   PORTB
+002F   2047           00071                 CALL    RET
+0030   3004           00072                 MOVLW   0X04
+0031   0086           00073                 MOVWF   PORTB
+0032   2047           00074                 CALL    RET
+0033   3002           00075                 MOVLW   0X02
+0034   0086           00076                 MOVWF   PORTB
+0035   2047           00077                 CALL    RET
+0036   3001           00078                 MOVLW   0X01
+0037   0086           00079                 MOVWF   PORTB
+0038   2047           00080                 CALL    RET
+0039   280E           00081                 GOTO    CP
+                      00082 
+003A   3001           00083 SINV    MOVLW   0X01
+003B   0086           00084                 MOVWF   PORTB
+003C   2047           00085                 CALL    RET
+003D   3002           00086                 MOVLW   0X02
+003E   0086           00087                 MOVWF   PORTB
+003F   2047           00088                 CALL    RET
+0040   3004           00089                 MOVLW   0X04
+0041   0086           00090                 MOVWF   PORTB
+0042   2047           00091                 CALL    RET
+0043   3008           00092                 MOVLW   0X08
+0044   0086           00093                 MOVWF   PORTB
+0045   2047           00094                 CALL    RET
+0046   280E           00095                 GOTO    CP
+                      00096 
+0047   0824           00097 RET             MOVF    CX,W
+0048   00A2           00098                 MOVWF   VC      
+0049   3001           00099 CVC             MOVLW   0x01
+004A   00A1           00100                 MOVWF   VB
+004B   3007           00101 CVB             MOVLW   0x07    
+004C   00A0           00102                 MOVWF   VA
+004D   0000           00103 CVA             NOP
+004E   0BA0           00104                 DECFSZ  VA,F
+004F   284D           00105                 GOTO    CVA
+0050   0BA1           00106                 DECFSZ  VB,F
+0051   284B           00107                 GOTO    CVB
+0052   0BA2           00108                 DECFSZ  VC,F    
+0053   2849           00109                 GOTO    CVC
+0054   0008           00110                 RETURN
+                      00111                 END
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  4
 
 
 SYMBOL TABLE
@@ -76,6 +175,7 @@ ABDOVF                            00000007
 ACKDT                             00000005
 ACKEN                             00000004
 ACKSTAT                           00000006
+ACX                               0000002A
 ADCON0                            0000001F
 ADCON1                            0000009F
 ADCS0                             00000006
@@ -103,6 +203,11 @@ ANS8                              00000000
 ANS9                              00000001
 ANSEL                             00000188
 ANSELH                            00000189
+AW01                              00000029
+AW02                              00000027
+AW04                              00000025
+AW08                              00000023
+AW16                              00000021
 BAUDCTL                           00000187
 BCLIE                             00000003
 BCLIF                             00000003
@@ -118,18 +223,18 @@ BRG15                             00000007
 BRG16                             00000003
 BRG2                              00000002
 BRG3                              00000003
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 BRG4                              00000004
 BRG5                              00000005
 BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
 BRG9                              00000001
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  4
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 BRGH                              00000002
 C                                 00000000
 C1CH0                             00000000
@@ -177,18 +282,18 @@ CCPR1                             00000015
 CCPR1H                            00000016
 CCPR1L                            00000015
 CCPR2                             0000001B
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 CCPR2H                            0000001C
 CCPR2L                            0000001B
 CHS0                              00000002
 CHS1                              00000003
 CHS2                              00000004
 CHS3                              00000005
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  5
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 CKE                               00000006
 CKP                               00000004
 CM1CON0                           00000107
@@ -197,6 +302,10 @@ CM2CON1                           00000109
 CP                                0000000E
 CREN                              00000004
 CSRC                              00000007
+CVA                               0000004D
+CVB                               0000004B
+CVC                               00000049
+CX                                00000024
 D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
@@ -204,6 +313,7 @@ DC1B0                             00000004
 DC1B1                             00000005
 DC2B0                             00000004
 DC2B1                             00000005
+DIR                               0000002B
 D_A                               00000005
 D_NOT_A                           00000005
 ECCPAS                            0000009C
@@ -231,6 +341,12 @@ GO                                00000001
 GO_DONE                           00000001
 GO_NOT_DONE                       00000001
 HTS                               00000002
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 I2C_DATA                          00000005
 I2C_READ                          00000002
 I2C_START                         00000003
@@ -242,12 +358,6 @@ INTEDG                            00000006
 INTF                              00000001
 IOCB                              00000096
 IOCB0                             00000000
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  6
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 IOCB1                             00000001
 IOCB2                             00000002
 IOCB3                             00000003
@@ -271,6 +381,7 @@ MSK4                              00000004
 MSK5                              00000005
 MSK6                              00000006
 MSK7                              00000007
+NB                                00000023
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
@@ -289,6 +400,12 @@ OERR                              00000001
 OPTION_REG                        00000081
 OSCCON                            0000008F
 OSCTUNE                           00000090
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 OSFIE                             00000007
 OSFIF                             00000007
 OSTS                              00000003
@@ -301,12 +418,6 @@ PCON                              0000008E
 PDC0                              00000000
 PDC1                              00000001
 PDC2                              00000002
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  7
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 PDC3                              00000003
 PDC4                              00000004
 PDC5                              00000005
@@ -348,6 +459,12 @@ RA7                               00000007
 RB0                               00000000
 RB1                               00000001
 RB2                               00000002
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 RB3                               00000003
 RB4                               00000004
 RB5                               00000005
@@ -360,12 +477,6 @@ RC1                               00000001
 RC2                               00000002
 RC3                               00000003
 RC4                               00000004
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  8
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 RC5                               00000005
 RC6                               00000006
 RC7                               00000007
@@ -392,6 +503,7 @@ RE1                               00000001
 RE2                               00000002
 RE3                               00000003
 READ_WRITE                        00000002
+RET                               00000047
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
@@ -405,6 +517,13 @@ SCKP                              00000004
 SCS                               00000000
 SEN                               00000000
 SENDB                             00000003
+SINV                              0000003A
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 SMP                               00000007
 SPBRG                             00000099
 SPBRGH                            0000009A
@@ -419,12 +538,6 @@ SSPCON                            00000014
 SSPCON2                           00000091
 SSPEN                             00000005
 SSPIE                             00000003
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE  9
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 SSPIF                             00000003
 SSPM0                             00000000
 SSPM1                             00000001
@@ -464,6 +577,12 @@ TMR1                              0000000E
 TMR1CS                            00000001
 TMR1GE                            00000006
 TMR1H                             0000000F
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TMR1IE                            00000000
 TMR1IF                            00000000
 TMR1L                             0000000E
@@ -478,12 +597,6 @@ TOUTPS2                           00000005
 TOUTPS3                           00000006
 TRISA                             00000085
 TRISA0                            00000000
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 10
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISA1                            00000001
 TRISA2                            00000002
 TRISA3                            00000003
@@ -523,6 +636,12 @@ TRISE0                            00000000
 TRISE1                            00000001
 TRISE2                            00000002
 TRISE3                            00000003
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TRMT                              00000001
 TUN0                              00000000
 TUN1                              00000001
@@ -537,18 +656,14 @@ TXEN                              00000005
 TXIE                              00000004
 TXIF                              00000004
 TXREG                             00000019
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 11
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TXSTA                             00000098
 UA                                00000001
 ULPWUE                            00000005
 ULPWUIE                           00000002
 ULPWUIF                           00000002
 VA                                00000020
+VB                                00000021
+VC                                00000022
 VCFG0                             00000004
 VCFG1                             00000005
 VR0                               00000000
@@ -580,6 +695,12 @@ WR                                00000001
 WREN                              00000002
 WRERR                             00000003
 WUE                               00000001
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 Z                                 00000002
 _BOR21V                           00003EFF
 _BOR40V                           00003FFF
@@ -596,12 +717,6 @@ _BOR_SBODEN                       00003DFF
 _CONFIG1                          00002007
 _CONFIG2                          00002008
 _CPD_OFF                          00003FFF
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 12
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _CPD_ON                           00003F7F
 _CP_OFF                           00003FFF
 _CP_ON                            00003FBF
@@ -639,6 +754,12 @@ _LVP_OFF                          00002FFF
 _LVP_ON                           00003FFF
 _MCLRE_OFF                        00003FDF
 _MCLRE_ON                         00003FFF
+MPASM  5.51                         MOTOR.ASM   2-20-2019  20:21:18         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _PWRTE_OFF                        00003FFF
 _PWRTE_ON                         00003FEF
 _WDTE_OFF                         00003FF7
@@ -651,15 +772,23 @@ _WRT_HALF                         000039FF
 _WRT_OFF                          00003FFF
 _XT_OSC                           00003FF9
 __16F887                          00000001
-
-MPASM 5.82                   BLINKINGLED.ASM   2-12-2019  12:01:24         PAGE 13
-
+__DEBUG                           1
 
 
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXX----------- ---------------- ----------------
+2000 : -------XX------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    85
+Program Memory Words Free:  8107
 
 
 Errors   :     0
-Warnings :     0 reported,     0 suppressed
+Warnings :     2 reported,     0 suppressed
 Messages :     8 reported,     0 suppressed
 
 

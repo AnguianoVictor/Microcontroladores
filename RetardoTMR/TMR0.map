@@ -1,0 +1,53 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Feb 25 16:23:53 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000058
+      .config_2007_TMR0.O       code   0x002007    program   0x000002
+      .config_2008_TMR0.O       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00002b      
+                            0x002007    0x002008      
+            46 out of 8455 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                       CP   0x000010    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     CT08   0x000026    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     E64I   0x000027    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     EDT0   0x000016    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    EDT02   0x000020    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     EV64   0x00001b    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    RT012   0x00001e    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    RT01S   0x000024    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     RT08   0x00001a    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     RT0M   0x000015    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                       CP   0x000010    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     RT0M   0x000015    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     EDT0   0x000016    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     RT08   0x00001a    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     EV64   0x00001b    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    RT012   0x00001e    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    EDT02   0x000020    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                    RT01S   0x000024    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     CT08   0x000026    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+                     E64I   0x000027    program     static C:\PIC_PROGS\RetardoTMR\TMR0.asm
+
+
