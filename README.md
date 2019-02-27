@@ -1,2 +1,2 @@
 # Microcontroladores
-Proyectos con microcontroladores de MicroChip y ARM
+Practicas, ejemplos y proyectos utilizando microcontroladores MicroChip
