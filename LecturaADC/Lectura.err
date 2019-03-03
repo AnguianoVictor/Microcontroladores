@@ -1,0 +1,10 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 2 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 16 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 17 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 21 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 28 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\LECTURAADC\LECTURA.ASM 41 : Register in operand not in bank 0.  Ensure that bank bits are correct.
