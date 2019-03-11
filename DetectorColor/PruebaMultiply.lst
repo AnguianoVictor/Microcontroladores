@@ -1,0 +1,933 @@
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001                 ;Programa que lee realiza una lectura analogica en el puerto AN5(RE0) de un trimpot 
+Warning[215]: Processor superseded by command line.  Verify processor symbol.
+                      00002                         PROCESSOR P16F887       
+                      00003                 #include "p16f887.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F887 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00809         LIST
+                      00004         
+                      00005                 ; CONFIG1
+2007   20D4           00006                 __CONFIG _CONFIG1,(_INTRC_OSC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF &
+                             _CPD_OFF & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+                      00007                 ; CONFIG2
+2008   3FFF           00008                 __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
+                      00009  
+  00000020            00010 PasosR                  Equ 0x20
+  00000021            00011 PasosN                  EQU 0x21
+  00000022            00012 PasosAm                 Equ 0x22
+  00000023            00013 PasosV                  EQU 0x23
+  00000024            00014 PasosA                  Equ 0x24
+  00000025            00015 PasosM                  EQU 0x25
+  00000026            00016 Sensor                  EQU 0x26
+                      00017 
+  00000033            00018 CT0                             EQU     0x33
+  00000034            00019 Cuenta                  EQU     0x34
+                      00020 
+0000                  00021                         ORG         0x00                ;Vector de restauracion
+                      00022         
+0000   1683 1703      00023                         BANKSEL ANSEL           ;Banco 3
+                      00024                                                                         
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0002   1688           00025                                 BSF             ANSEL,ANS5              ;Selecci?n de entrada analogica 
+                            para activar
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0003   0189           00026                         CLRF    ANSELH                  ;Se escribe 0x00 en el registro indi cado (ANSEL
+                            H)          1ciclo
+                      00027         
+0004   1683 1303      00028                         BANKSEL ADCON1                  ;Banco 1
+                      00029                                 ;MOVLW  0x80                    ;Justificaci?n a la derecha. 
+                      00030                                 ;MOVWF  ADCON1
+0006   30FF           00031                                 MOVLW   0xFF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   0085           00032                                 MOVWF   TRISA   
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   0186           00033                         CLRF    TRISB                   ;Limpia el registro TRISB                       
+                                        1ciclo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   0187           00034                         CLRF    TRISC                   ;Limpia el registro TRISC                       
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                                        1ciclo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   0188           00035                         CLRF    TRISD                   ;Limpia el registro TRISD                       
+                                        1ciclo
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000B   1409           00036                         BSF         TRISE,TRISE0        ;eL PIN RE0  se configura como entrada analogica
+000C   30D7           00037                                 MOVLW   0xD7
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000D   0081           00038                                 MOVWF   OPTION_REG
+                      00039                                 
+000E   1283 1303      00040                                 BANKSEL ADCON0                          
+                      00041                                 ;MOVLW  0xD5                    ;Encendido de ADC, GO apagado, Seleccion
+                             AN5, Clock interno. 
+                      00042                                 ;MOVWF  ADCON0
+                      00043                                 
+                      00044                                 
+0010                  00045 MAIN:                   ;CALL   Sen
+0010   2018           00046                                 CALL    COLORROJO
+0011   2084           00047                                 CALL    SENSOR
+0012   2810           00048                                 GOTO    MAIN
+                      00049                                 
+                      00050 
+0013   0000           00051 SampleTime:             NOP
+0014   0000           00052                                 NOP
+0015   0000           00053                                 NOP
+0016   0000           00054                                 NOP
+0017   0008           00055                                 RETURN
+                      00056 
+                      00057 
+0018   3001           00058 COLORROJO:              MOVLW   d'1'
+0019   00A0           00059                                 MOVWF   PasosR
+001A   3008           00060 LOOPROJO:               MOVLW   0X08
+001B   0086           00061                                 MOVWF   PORTB
+001C   20A8           00062                                 CALL    R_Xms
+001D   3004           00063                                 MOVLW   0X04
+001E   0086           00064                                 MOVWF   PORTB
+001F   20A8           00065                                 CALL    R_Xms
+0020   3002           00066                                 MOVLW   0X02
+0021   0086           00067                                 MOVWF   PORTB
+0022   20A8           00068                                 CALL    R_Xms
+0023   3001           00069                                 MOVLW   0X01
+0024   0086           00070                                 MOVWF   PORTB
+0025   20A8           00071                                 CALL    R_Xms
+0026   0BA0           00072                                 DECFSZ  PasosR,1
+0027   281A           00073                                 GOTO    LOOPROJO
+0028   2098           00074                                 CALL    STOP
+0029   0008           00075                                 RETURN
+                      00076 
+002A   3002           00077 COLORNARANJA    MOVLW   d'2'
+002B   00A1           00078                                 MOVWF   PasosN
+002C   3008           00079 LOOPNARANJA             MOVLW   0X08
+002D   0086           00080                                 MOVWF   PORTB
+002E   20A8           00081                                 CALL    R_Xms
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002F   3004           00082                                 MOVLW   0X04
+0030   0086           00083                                 MOVWF   PORTB
+0031   20A8           00084                                 CALL    R_Xms
+0032   3002           00085                                 MOVLW   0X02
+0033   0086           00086                                 MOVWF   PORTB
+0034   20A8           00087                                 CALL    R_Xms
+0035   3001           00088                                 MOVLW   0X01
+0036   0086           00089                                 MOVWF   PORTB
+0037   20A8           00090                                 CALL    R_Xms
+0038   0BA1           00091                                 DECFSZ  PasosN,1
+0039   282C           00092                                 GOTO    LOOPNARANJA
+003A   2098           00093                                 CALL    STOP
+003B   0008           00094                                 RETURN
+                      00095 
+003C   3003           00096 COLORAMARILLO   MOVLW   d'3'
+003D   00A2           00097                                 MOVWF   PasosAm
+003E   3008           00098 LOOPAMARILLO    MOVLW   0X08
+003F   0086           00099                                 MOVWF   PORTB
+0040   20A8           00100                                 CALL    R_Xms
+0041   3004           00101                                 MOVLW   0X04
+0042   0086           00102                                 MOVWF   PORTB
+0043   20A8           00103                                 CALL    R_Xms
+0044   3002           00104                                 MOVLW   0X02
+0045   0086           00105                                 MOVWF   PORTB
+0046   20A8           00106                                 CALL    R_Xms
+0047   3001           00107                                 MOVLW   0X01
+0048   0086           00108                                 MOVWF   PORTB
+0049   20A8           00109                                 CALL    R_Xms
+004A   0BA2           00110                                 DECFSZ  PasosAm,1
+004B   283E           00111                                 GOTO    LOOPAMARILLO
+004C   2098           00112                                 CALL    STOP
+004D   0008           00113                                 RETURN
+                      00114 
+004E   3004           00115 COLORVERDE              MOVLW   d'4'
+004F   00A3           00116                                 MOVWF   PasosV
+0050   3008           00117 LOOPVERDE               MOVLW   0X08
+0051   0086           00118                                 MOVWF   PORTB
+0052   20A8           00119                                 CALL    R_Xms
+0053   3004           00120                                 MOVLW   0X04
+0054   0086           00121                                 MOVWF   PORTB
+0055   20A8           00122                                 CALL    R_Xms
+0056   3002           00123                                 MOVLW   0X02
+0057   0086           00124                                 MOVWF   PORTB
+0058   20A8           00125                                 CALL    R_Xms
+0059   3001           00126                                 MOVLW   0X01
+005A   0086           00127                                 MOVWF   PORTB
+005B   20A8           00128                                 CALL    R_Xms
+005C   0BA3           00129                                 DECFSZ  PasosV,1
+005D   2850           00130                                 GOTO    LOOPVERDE
+005E   2098           00131                                 CALL    STOP
+005F   0008           00132                                 RETURN
+                      00133 
+0060   3005           00134 COLORAZUL:              MOVLW   d'5'
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0061   00A4           00135                                 MOVWF   PasosA
+0062   3008           00136 LOOPAZUL                MOVLW   0X08
+0063   0086           00137                                 MOVWF   PORTB
+0064   20A8           00138                                 CALL    R_Xms
+0065   3004           00139                                 MOVLW   0X04
+0066   0086           00140                                 MOVWF   PORTB
+0067   20A8           00141                                 CALL    R_Xms
+0068   3002           00142                                 MOVLW   0X02
+0069   0086           00143                                 MOVWF   PORTB
+006A   20A8           00144                                 CALL    R_Xms
+006B   3001           00145                                 MOVLW   0X01
+006C   0086           00146                                 MOVWF   PORTB
+006D   20A8           00147                                 CALL    R_Xms
+006E   0BA4           00148                                 DECFSZ  PasosA,1
+006F   2862           00149                                 GOTO    LOOPAZUL
+0070   2098           00150                                 CALL    STOP
+0071   0008           00151                                 RETURN
+                      00152 
+0072   3006           00153 COLORMORADO             MOVLW   d'6'
+0073   00A5           00154                                 MOVWF   PasosM
+0074   3008           00155 LOOPMORADO              MOVLW   0X08
+0075   0086           00156                                 MOVWF   PORTB
+0076   20A8           00157                                 CALL    R_Xms
+0077   3004           00158                                 MOVLW   0X04
+0078   0086           00159                                 MOVWF   PORTB
+0079   20A8           00160                                 CALL    R_Xms
+007A   3002           00161                                 MOVLW   0X02
+007B   0086           00162                                 MOVWF   PORTB
+007C   20A8           00163                                 CALL    R_Xms
+007D   3001           00164                                 MOVLW   0X01
+007E   0086           00165                                 MOVWF   PORTB
+007F   20A8           00166                                 CALL    R_Xms
+0080   0BA5           00167                                 DECFSZ  PasosM,1
+0081   2874           00168                                 GOTO    LOOPMORADO
+0082   2098           00169                                 CALL    STOP
+0083   0008           00170                                 RETURN
+                      00171 
+0084   3000           00172 SENSOR                  MOVLW   0X00
+0085   0086           00173                                 MOVWF   PORTB
+0086   3001           00174                                 MOVLW   0X01
+0087   0086           00175                                 MOVWF   PORTB
+0088   20A8           00176                                 CALL    R_Xms
+0089   3002           00177                                 MOVLW   0X02
+008A   0086           00178                                 MOVWF   PORTB
+008B   20A8           00179                                 CALL    R_Xms
+008C   3004           00180                                 MOVLW   0X04
+008D   0086           00181                                 MOVWF   PORTB
+008E   20A8           00182                                 CALL    R_Xms
+008F   3008           00183                                 MOVLW   0X08
+0090   0086           00184                                 MOVWF   PORTB
+0091   20AD           00185                                 CALL    FINAL
+0092   0805           00186 Sen                             MOVF    PORTA,W
+0093   00A6           00187                                 MOVWF   Sensor
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0094   3E00           00188                                 ADDLW   0x00
+0095   1BA6           00189                                 BTFSC   Sensor,7
+0096   2884           00190                                 GOTO    SENSOR
+0097   0008           00191                                 RETURN
+                      00192 
+                      00193 
+                      00194 
+0098   3000           00195 STOP:           MOVLW   0X00
+0099   0086           00196                         MOVWF   PORTB
+009A   20AD           00197                         CALL    FINAL
+009B   0008           00198                         RETURN
+                      00199 
+009C   0181           00200 TIEMPO          CLRF    TMR0
+009D   1E81           00201 EV64            BTFSS   TMR0,5
+009E   289D           00202                         GOTO    EV64
+009F   0008           00203                         RETURN
+                      00204 
+00A0   307A           00205 RT01S           MOVLW   0x7A
+00A1   00B3           00206                         MOVWF   CT0
+00A2   0181           00207 CT08            CLRF    TMR0    
+00A3   1E81           00208 E64I            BTFSS   TMR0,5
+00A4   28A3           00209                         GOTO    E64I
+00A5   0BB3           00210                         DECFSZ  CT0,F
+00A6   28A2           00211                         GOTO    CT08
+00A7   0008           00212                         RETURN
+                      00213 
+                      00214 
+00A8   30B0           00215 R_Xms   MOVLW   0XB0            ; cargo w con 216
+00A9   0081           00216                 MOVWF   TMR0            ; lo paso a TMR0
+00AA   1B81           00217 NADA    BTFSC   TMR0,7          ; me quedo haciendo nada
+00AB   28AA           00218                 GOTO    NADA            ; hasta que TMR0 desborde, y entonces
+00AC   0008           00219                 RETURN                          ; volveré a cargar TMR0
+                      00220 
+00AD   0181           00221 FINAL   CLRF    TMR0
+00AE   3055           00222                 MOVLW   0X55
+00AF   00B4           00223                 MOVWF   Cuenta
+00B0   0181           00224 CT64    CLRF    TMR0                    ; lo paso a TMR0
+00B1   1E81           00225 DESB    BTFSS   TMR0,5          ; me quedo haciendo nada
+00B2   28B1           00226                 GOTO    DESB
+00B3   0BB4           00227                 DECFSZ  Cuenta,F
+00B4   28B0           00228                 GOTO    CT64            ; hasta que TMR0 desborde, y entonces
+00B5   0008           00229                 RETURN                          ; volveré a cargar TMR0
+                      00230                 
+                      00231                         END
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ABDEN                             00000000
+ABDOVF                            00000007
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ANS0                              00000000
+ANS1                              00000001
+ANS10                             00000002
+ANS11                             00000003
+ANS12                             00000004
+ANS13                             00000005
+ANS2                              00000002
+ANS3                              00000003
+ANS4                              00000004
+ANS5                              00000005
+ANS6                              00000006
+ANS7                              00000007
+ANS8                              00000000
+ANS9                              00000001
+ANSEL                             00000188
+ANSELH                            00000189
+BAUDCTL                           00000187
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRG0                              00000000
+BRG1                              00000001
+BRG10                             00000002
+BRG11                             00000003
+BRG12                             00000004
+BRG13                             00000005
+BRG14                             00000006
+BRG15                             00000007
+BRG16                             00000003
+BRG2                              00000002
+BRG3                              00000003
+BRG4                              00000004
+BRG5                              00000005
+BRG6                              00000006
+BRG7                              00000007
+BRG8                              00000000
+BRG9                              00000001
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BRGH                              00000002
+C                                 00000000
+C1CH0                             00000000
+C1CH1                             00000001
+C1IE                              00000005
+C1IF                              00000005
+C1OE                              00000005
+C1ON                              00000007
+C1OUT                             00000006
+C1POL                             00000004
+C1R                               00000002
+C1RSEL                            00000005
+C1SEN                             00000005
+C2CH0                             00000000
+C2CH1                             00000001
+C2IE                              00000006
+C2IF                              00000006
+C2OE                              00000005
+C2ON                              00000007
+C2OUT                             00000006
+C2POL                             00000004
+C2R                               00000002
+C2REN                             00000004
+C2RSEL                            00000004
+C2SYNC                            00000000
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CKE                               00000006
+CKP                               00000004
+CM1CON0                           00000107
+CM2CON0                           00000108
+CM2CON1                           00000109
+COLORAMARILLO                     0000003C
+COLORAZUL                         00000060
+COLORMORADO                       00000072
+COLORNARANJA                      0000002A
+COLORROJO                         00000018
+COLORVERDE                        0000004E
+CREN                              00000004
+CSRC                              00000007
+CT0                               00000033
+CT08                              000000A2
+CT64                              000000B0
+Cuenta                            00000034
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+DESB                              000000B1
+D_A                               00000005
+D_NOT_A                           00000005
+E64I                              000000A3
+ECCPAS                            0000009C
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDAT                             0000010C
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+EV64                              0000009D
+F                                 00000001
+FERR                              00000002
+FINAL                             000000AD
+FSR                               00000004
+FVREN                             00000000
+GCEN                              00000007
+GIE                               00000007
+GO                                00000001
+GO_DONE                           00000001
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+GO_NOT_DONE                       00000001
+HTS                               00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IOCB                              00000096
+IOCB0                             00000000
+IOCB1                             00000001
+IOCB2                             00000002
+IOCB3                             00000003
+IOCB4                             00000004
+IOCB5                             00000005
+IOCB6                             00000006
+IOCB7                             00000007
+IRCF0                             00000004
+IRCF1                             00000005
+IRCF2                             00000006
+IRP                               00000007
+LOOPAMARILLO                      0000003E
+LOOPAZUL                          00000062
+LOOPMORADO                        00000074
+LOOPNARANJA                       0000002C
+LOOPROJO                          0000001A
+LOOPVERDE                         00000050
+LTS                               00000001
+MAIN                              00000010
+MC1OUT                            00000007
+MC2OUT                            00000006
+MSK                               00000093
+MSK0                              00000000
+MSK1                              00000001
+MSK2                              00000002
+MSK3                              00000003
+MSK4                              00000004
+MSK5                              00000005
+MSK6                              00000006
+MSK7                              00000007
+NADA                              000000AA
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OPTION_REG                        00000081
+OSCCON                            0000008F
+OSCTUNE                           00000090
+OSFIE                             00000007
+OSFIF                             00000007
+OSTS                              00000003
+P                                 00000004
+P1M0                              00000006
+P1M1                              00000007
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PDC0                              00000000
+PDC1                              00000001
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PRSEN                             00000007
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+PSTRCON                           0000009D
+PULSR                             00000002
+PULSS                             00000003
+PWM1CON                           0000009B
+PasosA                            00000024
+PasosAm                           00000022
+PasosM                            00000025
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PasosN                            00000021
+PasosR                            00000020
+PasosV                            00000023
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+RE3                               00000003
+READ_WRITE                        00000002
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RT01S                             000000A0
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+R_Xms                             000000A8
+S                                 00000003
+SBOREN                            00000004
+SCKP                              00000004
+SCS                               00000000
+SEN                               00000000
+SENDB                             00000003
+SENSOR                            00000084
+SMP                               00000007
+SPBRG                             00000099
+SPBRGH                            0000009A
+SPEN                              00000007
+SR0                               00000006
+SR1                               00000007
+SRCON                             00000185
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000093
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+STOP                              00000098
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+STRSYNC                           00000004
+SWDTEN                            00000000
+SYNC                              00000004
+SampleTime                        00000013
+Sen                               00000092
+Sensor                            00000026
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1GINV                            00000007
+T1GIV                             00000007
+T1GSS                             00000001
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TIEMPO                            0000009C
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1GE                            00000006
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRISE3                            00000003
+TRMT                              00000001
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+ULPWUE                            00000005
+ULPWUIE                           00000002
+ULPWUIF                           00000002
+VCFG0                             00000004
+VCFG1                             00000005
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             00000097
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+VRSS                              00000004
+W                                 00000000
+WCOL                              00000007
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WDTCON                            00000105
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WPUB                              00000095
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Z                                 00000002
+_BOR21V                           00003EFF
+_BOR40V                           00003FFF
+_BOR4V_BOR21V                     00003EFF
+_BOR4V_BOR40V                     00003FFF
+_BOREN_NSLEEP                     00003EFF
+_BOREN_OFF                        00003CFF
+_BOREN_ON                         00003FFF
+_BOREN_SBODEN                     00003DFF
+_BOR_NSLEEP                       00003EFF
+_BOR_OFF                          00003CFF
+_BOR_ON                           00003FFF
+_BOR_SBODEN                       00003DFF
+_CONFIG1                          00002007
+_CONFIG2                          00002008
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003F7F
+_CP_OFF                           00003FFF
+_CP_ON                            00003FBF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         00001FFF
+_DEVID1                           00002006
+_EC_OSC                           00003FFB
+_EXTRC                            00003FFF
+_EXTRCIO                          00003FFE
+_EXTRC_OSC_CLKOUT                 00003FFF
+_EXTRC_OSC_NOCLKOUT               00003FFE
+_FCMEN_OFF                        000037FF
+_FCMEN_ON                         00003FFF
+_FOSC_EC                          00003FFB
+_FOSC_EXTRC_CLKOUT                00003FFF
+_FOSC_EXTRC_NOCLKOUT              00003FFE
+_FOSC_HS                          00003FFA
+_FOSC_INTRC_CLKOUT                00003FFD
+_FOSC_INTRC_NOCLKOUT              00003FFC
+MPASM  5.51                PRUEBAMULTIPLY.ASM   3-10-2019  23:46:16         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_FOSC_LP                          00003FF8
+_FOSC_XT                          00003FF9
+_HS_OSC                           00003FFA
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_IESO_OFF                         00003BFF
+_IESO_ON                          00003FFF
+_INTOSC                           00003FFD
+_INTOSCIO                         00003FFC
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FF8
+_LVP_OFF                          00002FFF
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FEF
+_WDTE_OFF                         00003FF7
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FF7
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FF9
+__16F887                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXX----------
+2000 : -------XX------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   182
+Program Memory Words Free:  8010
+
+
+Errors   :     0
+Warnings :     1 reported,     0 suppressed
+Messages :     8 reported,     0 suppressed
+
+

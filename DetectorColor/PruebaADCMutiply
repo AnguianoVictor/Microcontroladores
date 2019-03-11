@@ -1,0 +1,45 @@
+    		;Programa que lee realiza una lectura analogica en el puerto AN5(RE0) de un trimpot 
+			PROCESSOR P16F887	
+    		#include "p16f887.inc"
+	
+    		; CONFIG1
+    		__CONFIG _CONFIG1,(_INTRC_OSC_NOCLKOUT & _WDTE_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+    		; CONFIG2
+    		__CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
+    		
+    		
+    	
+    		ORG	    0x00		;Vector de restauracion
+    	
+    		BANKSEL	ANSEL		;Banco 3
+									
+			BSF		ANSEL,ANS5		;Selecci?n de entrada analogica para activar
+    		CLRF    ANSELH			;Se escribe 0x00 en el registro indicado (ANSELH)	    1ciclo
+    	
+    		BANKSEL	ADCON1		;Banco 1
+			MOVLW	0x80			;Justificaci?n a la derecha. 
+			MOVWF	ADCON1		
+    		CLRF    TRISB			;Limpia el registro TRISB				    1ciclo
+    		CLRF    TRISC			;Limpia el registro TRISC				    1ciclo
+    		CLRF    TRISD			;Limpia el registro TRISD				    1ciclo
+    		BSF	    TRISE,TRISE0	;eL PIN RE0  se configura como entrada analogica
+			
+				
+			BANKSEL ADCON0				
+			MOVLW	0xD5			;Encendido de ADC, GO apagado, Seleccion AN5, Clock interno. 
+			MOVWF	ADCON0
+
+MAIN:		CALL 	SampleTime
+			BSF		ADCON0,GO		;Comienzo de la lectura
+			BTFSC	ADCON0,GO		;Se completo la lectura?
+			GOTO	$-1				;No,regresa a la linea anterior
+			BANKSEL	ADRESL			;Ubicaci?n banco1
+			MOVF	ADRESL,W		;Se carga el valor en W
+			BANKSEL	ADRESH			;Ubicaci?n banco0
+			MOVWF	PORTB			;Se muestra el valor de W en el puerto B
+			GOTO 	MAIN
+
+SampleTime:	NOP
+			NOP
+			RETURN
+			END

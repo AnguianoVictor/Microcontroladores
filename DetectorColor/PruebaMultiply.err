@@ -1,0 +1,9 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 2 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 32 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 34 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 35 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 36 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\DETECTORCOLOR\PRUEBAMULTIPLY.ASM 38 : Register in operand not in bank 0.  Ensure that bank bits are correct.
