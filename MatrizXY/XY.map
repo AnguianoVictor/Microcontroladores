@@ -1,0 +1,63 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Mar 25 12:39:01 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x0000ae
+        .config_2007_XY.O       code   0x002007    program   0x000002
+        .config_2008_XY.O       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000056      
+                            0x002007    0x002008      
+            89 out of 8455 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     COOR   0x00002a    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      C_P   0x000013    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      EC5   0x000017    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      EC6   0x000022    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                       JL   0x000051    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                       KL   0x000052    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      RET   0x00004f    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_1   0x00004e    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_2   0x00004d    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_3   0x00004c    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_4   0x00004b    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_5   0x00004a    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_6   0x000049    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_7   0x000048    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_8   0x000047    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      C_P   0x000013    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      EC5   0x000017    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      EC6   0x000022    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                     COOR   0x00002a    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_8   0x000047    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_7   0x000048    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_6   0x000049    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_5   0x00004a    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_4   0x00004b    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_3   0x00004c    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_2   0x00004d    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      R_1   0x00004e    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                      RET   0x00004f    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                       JL   0x000051    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+                       KL   0x000052    program     static C:\PIC_PROGS\Microcontroladores\MatrizXY\XY.asm
+
+

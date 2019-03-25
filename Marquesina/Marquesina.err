@@ -1,0 +1,30 @@
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 1 : Found directive in column 1. (PROCESSOR)
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 2 : Found directive in column 1. (INCLUDE)
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 3 : Found directive in column 1. (__CONFIG)
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 5 : Found directive in column 1. (__CONFIG)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 8 : Found label after column 1. (VA)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 9 : Found label after column 1. (VB)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 10 : Found label after column 1. (VC)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 12 : Found label after column 1. (VX)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 13 : Found label after column 1. (CONTA)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 14 : Found label after column 1. (C8)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 15 : Found label after column 1. (C7)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 16 : Found label after column 1. (C6)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 17 : Found label after column 1. (C5)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 18 : Found label after column 1. (C4)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 19 : Found label after column 1. (C3)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 20 : Found label after column 1. (C2)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 21 : Found label after column 1. (C1)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 22 : Found label after column 1. (VER)
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 32 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 37 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 38 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 39 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 43 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 160 : Found label after column 1. (RETARDO)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 163 : Found label after column 1. (C_C)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 165 : Found label after column 1. (C_B)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\MARQUESINA\MARQUESINA.ASM 167 : Found label after column 1. (C_A)

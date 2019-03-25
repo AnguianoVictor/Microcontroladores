@@ -1,0 +1,1102 @@
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (PROCESSOR)
+Warning[215]: Processor superseded by command line.  Verify processor symbol.
+                      00001 PROCESSOR P16F887
+Warning[205]: Found directive in column 1. (INCLUDE)
+                      00002 INCLUDE<P16F887.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F887 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00809         LIST
+Warning[205]: Found directive in column 1. (__CONFIG)
+2007   20D4           00003 __CONFIG _CONFIG1,(_INTRC_OSC_NOCLKOUT & _WDT_OFF & _PWRTE_OFF & _MCLRE_OFF &_CP_OFF & _CPD_OFF & _BOR_O
+                            FF & _IESO_OFF &_FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
+                      00004 
+Warning[205]: Found directive in column 1. (__CONFIG)
+2008   3FFF           00005 __CONFIG _CONFIG2,(_WRT_OFF & _BOR40V)
+                      00006 
+                      00007 ;----Definición de variables
+Warning[207]: Found label after column 1. (VA)
+  00000021            00008                         VA EQU 0X21
+Warning[207]: Found label after column 1. (VB)
+  00000022            00009                         VB EQU 0X22
+Warning[207]: Found label after column 1. (VC)
+  00000023            00010                         VC EQU 0X23
+                      00011 
+Warning[207]: Found label after column 1. (VX)
+  00000030            00012                         VX      EQU 0X30
+Warning[207]: Found label after column 1. (CONTA)
+  00000031            00013                         CONTA EQU 0X31
+Warning[207]: Found label after column 1. (C8)
+  00000040            00014                         C8      EQU 0X40
+Warning[207]: Found label after column 1. (C7)
+  00000041            00015                         C7      EQU 0X41
+Warning[207]: Found label after column 1. (C6)
+  00000042            00016                         C6      EQU 0X42
+Warning[207]: Found label after column 1. (C5)
+  00000043            00017                         C5      EQU 0X43
+Warning[207]: Found label after column 1. (C4)
+  00000044            00018                         C4      EQU 0X44
+Warning[207]: Found label after column 1. (C3)
+  00000045            00019                         C3      EQU 0X45
+Warning[207]: Found label after column 1. (C2)
+  00000046            00020                         C2      EQU 0X46
+Warning[207]: Found label after column 1. (C1)
+  00000047            00021                         C1      EQU 0X47
+Warning[207]: Found label after column 1. (VER)
+  00000050            00022                         VER     EQU     0X50
+                      00023 
+                      00024 
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0000                  00025                         ORG                     0X00
+0000   2897           00026                         GOTO            INICIO
+                      00027                         INCLUDE<NOMBRE.ASM>
+0001   0782           00001 DATOS                   ADDWF           PCL,F
+                      00002 
+                      00003                                 ;-------V
+0002   3400           00004                                 RETLW           0x00
+0003   3470           00005                                 RETLW           0x70
+0004   3408           00006                                 RETLW           0x08
+0005   3404           00007                                 RETLW           0x04
+0006   3402           00008                                 RETLW           0x02
+0007   3404           00009                                 RETLW           0x04
+0008   3408           00010                                 RETLW           0x08
+0009   3470           00011                                 RETLW           0x70
+                      00012 
+                      00013                                 ;-------I
+000A   3400           00014                                 RETLW           0X00
+000B   3442           00015                                 RETLW           0X42
+000C   3442           00016                                 RETLW           0x42
+000D   347E           00017                                 RETLW           0x7E
+000E   347E           00018                                 RETLW           0x7E
+000F   3442           00019                                 RETLW           0x42
+0010   3442           00020                                 RETLW           0X42
+0011   3400           00021                                 RETLW           0X00
+                      00022 
+                      00023                                 ;-------C
+0012   3400           00024                                 RETLW           0X00 ;CUENTA DESDE AQUI, GUIANDOTE DE LA ENUMERACION
+0013   347E           00025                                 RETLW           0X7E ;PERO RESTA LO QUE ESTA COMENTADO TIPO: ;-----R
+0014   3442           00026                                 RETLW           0X42
+0015   3442           00027                                 RETLW           0X42
+0016   3442           00028                                 RETLW           0X42
+0017   3442           00029                                 RETLW           0X42
+0018   3400           00030                                 RETLW           0X00
+0019   3400           00031                                 RETLW           0X00  
+                      00032 
+                      00033                                 ;-------T
+001A   3400           00034                                 RETLW           0X00
+001B   3440           00035                                 RETLW           0X40
+001C   3440           00036                                 RETLW           0X40
+001D   347E           00037                                 RETLW           0X7E
+001E   347E           00038                                 RETLW           0X7E
+001F   3440           00039                                 RETLW           0X40
+0020   3440           00040                                 RETLW           0X40
+0021   3400           00041                                 RETLW           0X00
+                      00042 
+                      00043                                 ;-------O
+0022   3400           00044                                 RETLW           0X00
+0023   3400           00045                                 RETLW           0X00
+0024   347E           00046                                 RETLW           0X7E
+0025   3442           00047                                 RETLW           0X42
+0026   3442           00048                                 RETLW           0X42
+0027   347E           00049                                 RETLW           0X7E
+0028   3400           00050                                 RETLW           0X00
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0029   3400           00051                                 RETLW           0X00
+                      00052 
+                      00053                                 ;-------R
+002A   3400           00054                                 RETLW           0X00
+002B   347E           00055                                 RETLW           0X7E
+002C   3448           00056                                 RETLW           0X48
+002D   3454           00057                                 RETLW           0X54
+002E   3422           00058                                 RETLW           0X22
+002F   3400           00059                                 RETLW           0X00
+0030   3400           00060                                 RETLW           0X00
+0031   3400           00061                                 RETLW           0X00
+                      00062 
+                      00063 
+0032   3400           00064                                 RETLW           0X00    ;CUATRO ESPACIO DESPUES DE UN NOMBRE
+0033   3400           00065                                 RETLW           0X00
+0034   3400           00066                                 RETLW           0X00
+0035   3400           00067                                 RETLW           0X00
+                      00068 
+                      00069                                 ;-------R
+0036   3400           00070                                 RETLW           0X00
+0037   347E           00071                                 RETLW           0X7E
+0038   3448           00072                                 RETLW           0X48
+0039   3454           00073                                 RETLW           0X54
+003A   3422           00074                                 RETLW           0X22
+003B   3400           00075                                 RETLW           0X00
+                      00076 
+                      00077                                 ;-------A
+003C   3400           00078                                 RETLW           0X00
+003D   3400           00079                                 RETLW           0X00
+003E   343E           00080                                 RETLW           0X3E
+003F   3448           00081                                 RETLW           0X48
+0040   3448           00082                                 RETLW           0X48
+0041   343E           00083                                 RETLW           0X3E
+0042   3400           00084                                 RETLW           0x00
+0043   3400           00085                                 RETLW           0x00
+                      00086 
+                      00087                                 ;-------M
+0044   3400           00088                                 RETLW           0X00
+0045   347E           00089                                 RETLW           0X7E
+0046   3460           00090                                 RETLW           0X60
+0047   3410           00091                                 RETLW           0X10
+0048   3460           00092                                 RETLW           0X60
+0049   347E           00093                                 RETLW           0X7E
+004A   3400           00094                                 RETLW           0x00
+004B   3400           00095                                 RETLW           0x00
+                      00096 
+                      00097                                 ;-------I
+004C   3400           00098                                 RETLW           0X00
+004D   3442           00099                                 RETLW           0X42
+004E   3442           00100                                 RETLW           0x42
+004F   347E           00101                                 RETLW           0x7E
+0050   347E           00102                                 RETLW           0x7E
+0051   3442           00103                                 RETLW           0x42
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0052   3442           00104                                 RETLW           0X42
+0053   3400           00105                                 RETLW           0X00
+                      00106 
+                      00107                                 ;-------R
+0054   3400           00108                                 RETLW           0X00
+0055   347E           00109                                 RETLW           0X7E
+0056   3448           00110                                 RETLW           0X48
+0057   3454           00111                                 RETLW           0X54
+0058   3422           00112                                 RETLW           0X22
+0059   3400           00113                                 RETLW           0X00
+005A   3400           00114                                 RETLW           0X00
+                      00115 
+                      00116                                 ;-------E
+005B   3400           00117                                 RETLW           0X00
+005C   347E           00118                                 RETLW           0X7E
+005D   345A           00119                                 RETLW           0X5A
+005E   345A           00120                                 RETLW           0X5A
+005F   3442           00121                                 RETLW           0X42
+0060   3442           00122                                 RETLW           0X42
+0061   3400           00123                                 RETLW           0X00
+0062   3400           00124                                 RETLW           0X00
+                      00125 
+                      00126                                 ;-------Z
+0063   3400           00127                                 RETLW           0X00
+0064   3446           00128                                 RETLW           0X46
+0065   344A           00129                                 RETLW           0X4A
+0066   3452           00130                                 RETLW           0X52
+0067   3462           00131                                 RETLW           0X62
+0068   3400           00132                                 RETLW           0X00
+0069   3400           00133                                 RETLW           0X00    
+                      00134                                 
+                      00135                                 ;DOS ESPACIOS
+                      00136 
+                      00137         
+                      00138                                 ;EN ESTE CASO SON 160 LINEAS
+                      00139                                 ; 160- (19 COMENTARIOS + 1(ADDWF                PCL,F))
+                      00140                                 ;PUSE 140 EN EL CODIGO PRINCIPAL
+                      00141 
+                      00028                         INCLUDE<DENUEVO.ASM>
+                      00001                         
+006A                  00002 MUESTRA
+006A   3032           00003                         MOVLW           .50
+006B   00D0           00004                         MOVWF           VER
+006C                  00005 AQUI
+006C   3001           00006                         MOVLW           0X01
+006D   0086           00007                         MOVWF           PORTB
+006E   0847           00008                         MOVF            C1,W
+006F   0087           00009                         MOVWF           PORTC
+0070   20FA           00010                         CALL            RETARDO
+                      00011 
+0071   3002           00012                         MOVLW           0X02  
+0072   0086           00013                         MOVWF           PORTB
+0073   0846           00014                         MOVF            C2,W
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0074   0087           00015                         MOVWF           PORTC
+0075   20FA           00016                         CALL            RETARDO
+                      00017 
+0076   3004           00018                         MOVLW           0X04
+0077   0086           00019                         MOVWF           PORTB
+0078   0845           00020                         MOVF            C3,W
+0079   0087           00021                         MOVWF           PORTC
+007A   20FA           00022                         CALL            RETARDO
+                      00023 
+007B   3008           00024                         MOVLW           0X08
+007C   0086           00025                         MOVWF           PORTB
+007D   0844           00026                         MOVF            C4,W
+007E   0087           00027                         MOVWF           PORTC
+007F   20FA           00028                         CALL            RETARDO
+                      00029 
+                      00030 
+0080   3010           00031                         MOVLW           0X10
+0081   0086           00032                         MOVWF           PORTB
+0082   0843           00033                         MOVF            C5,W
+0083   0087           00034                         MOVWF           PORTC
+0084   20FA           00035                         CALL            RETARDO
+                      00036 
+0085   3020           00037                         MOVLW           0X20
+0086   0086           00038                         MOVWF           PORTB
+0087   0842           00039                         MOVF            C6,W
+0088   0087           00040                         MOVWF           PORTC
+0089   20FA           00041                         CALL            RETARDO
+                      00042 
+                      00043 
+008A   3040           00044                         MOVLW           0X40
+008B   0086           00045                         MOVWF           PORTB
+008C   0841           00046                         MOVF            C7,W
+008D   0087           00047                         MOVWF           PORTC
+008E   20FA           00048                         CALL            RETARDO
+                      00049 
+008F   3080           00050                         MOVLW           0X80
+0090   0086           00051                         MOVWF           PORTB
+0091   0840           00052                         MOVF            C8,W
+0092   0087           00053                         MOVWF           PORTC
+0093   20FA           00054                         CALL            RETARDO
+                      00055 
+0094   0BD0           00056                         DECFSZ          VER,F
+0095   286C           00057                         GOTO            AQUI
+                      00058 
+0096   0008           00059                         RETURN
+0097                  00029 INICIO
+0097   1683 1703      00030                         BANKSEL         ANSEL
+0099   30E0           00031                         MOVLW           0XE0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+009A   0088           00032                         MOVWF           ANSEL
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+009B   0189           00033                         CLRF            ANSELH
+                      00034                         
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+009C   1683 1303      00035                         BANKSEL         TRISA
+009E   30FF           00036                         MOVLW           0XFF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+009F   0085           00037                         MOVWF           TRISA ;ENTRADAS
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00A0   0186           00038                         CLRF            TRISB ;SALIDADS
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00A1   0187           00039                         CLRF            TRISC
+                      00040 
+00A2   3007           00041                         MOVLW           0X07 
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00A3   0088           00042                         MOVWF           TRISD
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+00A4   0089           00043                         MOVWF           TRISE
+                      00044                         
+00A5   1283 1303      00045                         BANKSEL         PORTA
+                      00046 
+                      00047                         ;PORTC: COL 
+                      00048                         ;PORTB: ROW
+                      00049 ;Se ponen en cero todas las variables
+00A7   01B0           00050                         CLRF            VX
+00A8   01C7           00051                         CLRF            C1
+00A9   01C6           00052                         CLRF            C2
+00AA   01C5           00053                         CLRF            C3
+00AB   01C4           00054                         CLRF            C4
+00AC   01C3           00055                         CLRF            C5
+00AD   01C2           00056                         CLRF            C6
+00AE   01C1           00057                         CLRF            C7
+00AF   01C0           00058                         CLRF            C8
+00B0   01D0           00059                         CLRF            VER
+                      00060                         
+00B1   3001           00061                         MOVLW           .1
+00B2   00B1           00062                         MOVWF           CONTA
+                      00063 
+00B3                  00064 SACANOMBRE              
+00B3   3001           00065                         MOVLW           0X01
+00B4   0086           00066                         MOVWF           PORTB
+00B5   0846           00067                         MOVF            C2,W
+00B6   00C7           00068                         MOVWF           C1
+00B7   0847           00069                         MOVF            C1,W
+00B8   0087           00070                         MOVWF           PORTC
+00B9   20FA           00071                         CALL            RETARDO
+                      00072 
+00BA   3002           00073                         MOVLW           0X02  
+00BB   0086           00074                         MOVWF           PORTB
+00BC   0845           00075                         MOVF            C3,W
+00BD   00C6           00076                         MOVWF           C2
+00BE   0846           00077                         MOVF            C2,W
+00BF   0087           00078                         MOVWF           PORTC
+00C0   20FA           00079                         CALL            RETARDO
+                      00080 
+00C1   3004           00081                         MOVLW           0X04
+00C2   0086           00082                         MOVWF           PORTB
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00C3   0844           00083                         MOVF            C4,W
+00C4   00C5           00084                         MOVWF           C3
+00C5   0845           00085                         MOVF            C3,W
+00C6   0087           00086                         MOVWF           PORTC
+00C7   20FA           00087                         CALL            RETARDO
+                      00088 
+00C8   3008           00089                         MOVLW           0X08
+00C9   0086           00090                         MOVWF           PORTB
+00CA   0843           00091                         MOVF            C5,W
+00CB   00C4           00092                         MOVWF           C4
+00CC   0844           00093                         MOVF            C4,W
+00CD   0087           00094                         MOVWF           PORTC
+00CE   20FA           00095                         CALL            RETARDO
+                      00096 
+                      00097 
+00CF   3010           00098                         MOVLW           0X10
+00D0   0086           00099                         MOVWF           PORTB
+00D1   0842           00100                         MOVF            C6,W
+00D2   00C3           00101                         MOVWF           C5
+00D3   0843           00102                         MOVF            C5,W
+00D4   0087           00103                         MOVWF           PORTC
+00D5   20FA           00104                         CALL            RETARDO
+                      00105 
+00D6   3020           00106                         MOVLW           0X20
+00D7   0086           00107                         MOVWF           PORTB
+00D8   0841           00108                         MOVF            C7,W
+00D9   00C2           00109                         MOVWF           C6
+00DA   0842           00110                         MOVF            C6,W
+00DB   0087           00111                         MOVWF           PORTC
+00DC   20FA           00112                         CALL            RETARDO
+                      00113 
+                      00114 
+00DD   3040           00115                         MOVLW           0X40
+00DE   0086           00116                         MOVWF           PORTB
+00DF   0840           00117                         MOVF            C8,W
+00E0   00C1           00118                         MOVWF           C7
+00E1   0841           00119                         MOVF            C7,W
+00E2   0087           00120                         MOVWF           PORTC
+00E3   20FA           00121                         CALL            RETARDO
+                      00122 
+00E4   3080           00123                         MOVLW           0X80
+00E5   0086           00124                         MOVWF           PORTB
+00E6   20F5           00125                         CALL            FILAS
+00E7   00C0           00126                         MOVWF           C8
+00E8   0087           00127                         MOVWF           PORTC
+00E9   20FA           00128                         CALL            RETARDO
+                      00129 ;----------------------------------------------
+                      00130 
+00EA   206A           00131                         CALL            MUESTRA
+                      00132 
+                      00133 ;---------------------------------------------
+00EB   0BB1           00134                         DECFSZ          CONTA,F
+00EC   28B3           00135                         GOTO            SACANOMBRE
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00136 
+00ED   0AB0           00137                         INCF            VX,F
+00EE   3001           00138                         MOVLW           .1
+00EF   00B1           00139                         MOVWF           CONTA
+                      00140 
+                      00141 
+                      00142                 
+00F0   306E           00143                         MOVLW           .110
+00F1   0630           00144                         XORWF           VX,W
+00F2   1903           00145                         BTFSC           STATUS,Z   ;SI ES CERO SALTA Y REPITE
+00F3   28F8           00146                         GOTO            BORRA 
+00F4   28B3           00147                         GOTO            SACANOMBRE
+                      00148 
+                      00149         
+00F5   0830           00150 FILAS           MOVF            VX,W  ;CONTADOR
+00F6   2001           00151                         CALL            DATOS
+00F7   0008           00152                         RETURN
+                      00153 
+                      00154 
+00F8   01B0           00155 BORRA           CLRF            VX
+00F9   28B3           00156                         GOTO            SACANOMBRE
+                      00157 
+                      00158 ;RETARDO 800 us
+                      00159 
+Warning[207]: Found label after column 1. (RETARDO)
+00FA   3001           00160         RETARDO         MOVLW      .1
+00FB   00A3           00161                                 MOVWF           VC   
+                      00162                                 
+Warning[207]: Found label after column 1. (C_C)
+00FC   3007           00163         C_C             MOVLW           .7
+00FD   00A2           00164                                 MOVWF           VB
+Warning[207]: Found label after column 1. (C_B)
+00FE   3006           00165         C_B                     MOVLW           .6
+00FF   00A1           00166                                 MOVWF           VA
+Warning[207]: Found label after column 1. (C_A)
+0100   0000           00167         C_A                     NOP
+0101   0BA1           00168                                 DECFSZ          VA,F
+0102   2900           00169                                 GOTO            C_A
+0103   0BA2           00170                                 DECFSZ          VB,F
+0104   28FE           00171                                 GOTO            C_B
+0105   0BA3           00172                                 DECFSZ          VC,F
+0106   28FC           00173                                 GOTO            C_C
+0107   0008           00174                                 RETURN
+                      00175 
+                      00176                         END
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ABDEN                             00000000
+ABDOVF                            00000007
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ANS0                              00000000
+ANS1                              00000001
+ANS10                             00000002
+ANS11                             00000003
+ANS12                             00000004
+ANS13                             00000005
+ANS2                              00000002
+ANS3                              00000003
+ANS4                              00000004
+ANS5                              00000005
+ANS6                              00000006
+ANS7                              00000007
+ANS8                              00000000
+ANS9                              00000001
+ANSEL                             00000188
+ANSELH                            00000189
+AQUI                              0000006C
+BAUDCTL                           00000187
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BORRA                             000000F8
+BRG0                              00000000
+BRG1                              00000001
+BRG10                             00000002
+BRG11                             00000003
+BRG12                             00000004
+BRG13                             00000005
+BRG14                             00000006
+BRG15                             00000007
+BRG16                             00000003
+BRG2                              00000002
+BRG3                              00000003
+BRG4                              00000004
+BRG5                              00000005
+BRG6                              00000006
+BRG7                              00000007
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BRG8                              00000000
+BRG9                              00000001
+BRGH                              00000002
+C                                 00000000
+C1                                00000047
+C1CH0                             00000000
+C1CH1                             00000001
+C1IE                              00000005
+C1IF                              00000005
+C1OE                              00000005
+C1ON                              00000007
+C1OUT                             00000006
+C1POL                             00000004
+C1R                               00000002
+C1RSEL                            00000005
+C1SEN                             00000005
+C2                                00000046
+C2CH0                             00000000
+C2CH1                             00000001
+C2IE                              00000006
+C2IF                              00000006
+C2OE                              00000005
+C2ON                              00000007
+C2OUT                             00000006
+C2POL                             00000004
+C2R                               00000002
+C2REN                             00000004
+C2RSEL                            00000004
+C2SYNC                            00000000
+C3                                00000045
+C4                                00000044
+C5                                00000043
+C6                                00000042
+C7                                00000041
+C8                                00000040
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CKE                               00000006
+CKP                               00000004
+CM1CON0                           00000107
+CM2CON0                           00000108
+CM2CON1                           00000109
+CONTA                             00000031
+CREN                              00000004
+CSRC                              00000007
+C_A                               00000100
+C_B                               000000FE
+C_C                               000000FC
+D                                 00000005
+DATA_ADDRESS                      00000005
+DATOS                             00000001
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+D_A                               00000005
+D_NOT_A                           00000005
+ECCPAS                            0000009C
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDAT                             0000010C
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FILAS                             000000F5
+FSR                               00000004
+FVREN                             00000000
+GCEN                              00000007
+GIE                               00000007
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+GO                                00000001
+GO_DONE                           00000001
+GO_NOT_DONE                       00000001
+HTS                               00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+INDF                              00000000
+INICIO                            00000097
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IOCB                              00000096
+IOCB0                             00000000
+IOCB1                             00000001
+IOCB2                             00000002
+IOCB3                             00000003
+IOCB4                             00000004
+IOCB5                             00000005
+IOCB6                             00000006
+IOCB7                             00000007
+IRCF0                             00000004
+IRCF1                             00000005
+IRCF2                             00000006
+IRP                               00000007
+LTS                               00000001
+MC1OUT                            00000007
+MC2OUT                            00000006
+MSK                               00000093
+MSK0                              00000000
+MSK1                              00000001
+MSK2                              00000002
+MSK3                              00000003
+MSK4                              00000004
+MSK5                              00000005
+MSK6                              00000006
+MSK7                              00000007
+MUESTRA                           0000006A
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_WRITE                         00000002
+OERR                              00000001
+OPTION_REG                        00000081
+OSCCON                            0000008F
+OSCTUNE                           00000090
+OSFIE                             00000007
+OSFIF                             00000007
+OSTS                              00000003
+P                                 00000004
+P1M0                              00000006
+P1M1                              00000007
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PDC0                              00000000
+PDC1                              00000001
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PRSEN                             00000007
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+PSTRCON                           0000009D
+PULSR                             00000002
+PULSS                             00000003
+PWM1CON                           0000009B
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+RE3                               00000003
+READ_WRITE                        00000002
+RETARDO                           000000FA
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SACANOMBRE                        000000B3
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SBOREN                            00000004
+SCKP                              00000004
+SCS                               00000000
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SPBRG                             00000099
+SPBRGH                            0000009A
+SPEN                              00000007
+SR0                               00000006
+SR1                               00000007
+SRCON                             00000185
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000093
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+STRSYNC                           00000004
+SWDTEN                            00000000
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1GINV                            00000007
+T1GIV                             00000007
+T1GSS                             00000001
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1GE                            00000006
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRISE3                            00000003
+TRMT                              00000001
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+ULPWUE                            00000005
+ULPWUIE                           00000002
+ULPWUIF                           00000002
+VA                                00000021
+VB                                00000022
+VC                                00000023
+VCFG0                             00000004
+VCFG1                             00000005
+VER                               00000050
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             00000097
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+VRSS                              00000004
+VX                                00000030
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000105
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WPUB                              00000095
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Z                                 00000002
+_BOR21V                           00003EFF
+_BOR40V                           00003FFF
+_BOR4V_BOR21V                     00003EFF
+_BOR4V_BOR40V                     00003FFF
+_BOREN_NSLEEP                     00003EFF
+_BOREN_OFF                        00003CFF
+_BOREN_ON                         00003FFF
+_BOREN_SBODEN                     00003DFF
+_BOR_NSLEEP                       00003EFF
+_BOR_OFF                          00003CFF
+_BOR_ON                           00003FFF
+_BOR_SBODEN                       00003DFF
+_CONFIG1                          00002007
+_CONFIG2                          00002008
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003F7F
+_CP_OFF                           00003FFF
+_CP_ON                            00003FBF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         00001FFF
+_DEVID1                           00002006
+_EC_OSC                           00003FFB
+_EXTRC                            00003FFF
+_EXTRCIO                          00003FFE
+_EXTRC_OSC_CLKOUT                 00003FFF
+_EXTRC_OSC_NOCLKOUT               00003FFE
+_FCMEN_OFF                        000037FF
+_FCMEN_ON                         00003FFF
+_FOSC_EC                          00003FFB
+_FOSC_EXTRC_CLKOUT                00003FFF
+_FOSC_EXTRC_NOCLKOUT              00003FFE
+_FOSC_HS                          00003FFA
+_FOSC_INTRC_CLKOUT                00003FFD
+_FOSC_INTRC_NOCLKOUT              00003FFC
+_FOSC_LP                          00003FF8
+_FOSC_XT                          00003FF9
+_HS_OSC                           00003FFA
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_IESO_OFF                         00003BFF
+_IESO_ON                          00003FFF
+_INTOSC                           00003FFD
+_INTOSCIO                         00003FFC
+MPASM  5.51                    MARQUESINA.ASM   3-25-2019  11:44:53         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FF8
+_LVP_OFF                          00002FFF
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FEF
+_WDTE_OFF                         00003FF7
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FF7
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FF9
+__16F887                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+00C0 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0100 : XXXXXXXX-------- ---------------- ---------------- ----------------
+2000 : -------XX------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   264
+Program Memory Words Free:  7928
+
+
+Errors   :     0
+Warnings :    23 reported,     0 suppressed
+Messages :     7 reported,     0 suppressed
+
+

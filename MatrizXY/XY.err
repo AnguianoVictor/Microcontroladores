@@ -1,0 +1,10 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 15 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 16 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 21 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[202] C:\PIC_PROGS\MICROCONTROLADORES\MATRIZXY\XY.ASM 105 : Argument out of range.  Least significant bits used.

@@ -1,0 +1,55 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Mar 25 11:44:54 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000210
+.config_2007_MARQUESINA.O       code   0x002007    program   0x000002
+.config_2008_MARQUESINA.O       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000107      
+                            0x002007    0x002008      
+            266 out of 8455 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     AQUI   0x00006c    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\DENUEVO.ASM
+                    BORRA   0x0000f8    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_A   0x000100    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_B   0x0000fe    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_C   0x0000fc    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                    DATOS   0x000001    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\NOMBRE.ASM
+                    FILAS   0x0000f5    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                   INICIO   0x000097    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                  MUESTRA   0x00006a    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\DENUEVO.ASM
+                  RETARDO   0x0000fa    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+               SACANOMBRE   0x0000b3    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    DATOS   0x000001    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\NOMBRE.ASM
+                  MUESTRA   0x00006a    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\DENUEVO.ASM
+                     AQUI   0x00006c    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\DENUEVO.ASM
+                   INICIO   0x000097    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+               SACANOMBRE   0x0000b3    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                    FILAS   0x0000f5    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                    BORRA   0x0000f8    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                  RETARDO   0x0000fa    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_C   0x0000fc    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_B   0x0000fe    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+                      C_A   0x000100    program     static C:\PIC_PROGS\Microcontroladores\Marquesina\Marquesina.asm
+
+
