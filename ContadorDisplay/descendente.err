@@ -1,0 +1,11 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 19 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 28 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 137 : Found label after column 1. (CI_B)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 139 : Found label after column 1. (CI_A)
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\CONTADORDISPLAY\DESCENDENTE.ASM 147 : Found directive in column 1. (END)

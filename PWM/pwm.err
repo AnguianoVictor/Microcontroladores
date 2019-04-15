@@ -1,0 +1,20 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 15 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 16 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 20 : Using default destination of 1 (file).
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 28 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 30 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 45 : Found label after column 1. (E_IP)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 48 : Found label after column 1. (C_P)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 52 : Found label after column 1. (E_C0)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 62 : Found label after column 1. (E_C1)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 71 : Found label after column 1. (RET)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 73 : Found label after column 1. (CI_B)
+Warning[207] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 75 : Found label after column 1. (CI_A)
+Warning[205] C:\PIC_PROGS\MICROCONTROLADORES\PWM\PWM.ASM 84 : Found directive in column 1. (END)

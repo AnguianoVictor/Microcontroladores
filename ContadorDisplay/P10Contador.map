@@ -1,0 +1,59 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Mar 25 18:50:49 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x0000de
+.config_2007_P10CONTADOR.O       code   0x002007    program   0x000002
+.config_2008_P10CONTADOR.O       code   0x002008    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00006e      
+                            0x002007    0x002008      
+            113 out of 8455 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      C8P   0x000042    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     CI_A   0x000060    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     CI_B   0x00005e    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_C   0x00000e    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_D   0x00000f    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_M   0x00000d    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_P   0x000013    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     C_PX   0x000011    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_U   0x000010    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     LOOP   0x00006a    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     R4MS   0x00005c    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                    R4MS1   0x000066    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      T7S   0x000051    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      C_M   0x00000d    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_C   0x00000e    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_D   0x00000f    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_U   0x000010    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     C_PX   0x000011    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C_P   0x000013    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      C8P   0x000042    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                      T7S   0x000051    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     R4MS   0x00005c    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     CI_B   0x00005e    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     CI_A   0x000060    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                    R4MS1   0x000066    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+                     LOOP   0x00006a    program     static C:\Users\Propietario\Desktop\ensamblador\ASMProyecto10Contador\P10Contador.asm
+
+

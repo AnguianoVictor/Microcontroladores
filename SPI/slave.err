@@ -1,0 +1,11 @@
+Warning[215] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 1 : Processor superseded by command line.  Verify processor symbol.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 10 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 11 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 15 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 16 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 18 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 19 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\PIC_PROGS\MICROCONTROLADORES\SPI\SLAVE.ASM 31 : Register in operand not in bank 0.  Ensure that bank bits are correct.
