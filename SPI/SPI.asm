@@ -5,48 +5,64 @@
 
 DCounter1 EQU 0X0C
 DCounter2 EQU 0X0D
-
+DatosOut  EQU 0x21
+DatosIn	  EQU 0x22
 
 		ORG			0x00
-		
+		;-----MAESTRO
 		BANKSEL		ANSEL
+		;MOVLW		0x01		;Configurando ADC AN0
 		CLRF		ANSEL
 		CLRF		ANSELH
 		
 		;BANCO 1
 		BANKSEL		TRISA
-		MOVLW		0x00
-		MOVWF		TRISA
-		CLRF		TRISB
-		MOVLW		b'00010000'
-		MOVWF		TRISC
+		;MOVLW		0x70
+		;MOVWF		OSCCON		;Cambiar la frecuencia PWM
+		;CLRF		ADCON1		;Justificacion izquierda ADC
+		;MOVLW		0xBF
+		;MOVWF		PR2			;Periodo de PWM
+		;MOVLW		b'00000000'	;Entrada AN0, Salida SPI-SS
+		CLRF		TRISA
+		CLRF		TRISB		;Salida de LEDS
+		;MOVLW		b'00000000'	;Salida PWM, Configuracion pines SPI
+		;MOVWF		TRISC
+		BCF			TRISC,3          ;CLK is output
+   		BCF 		TRISC,5          ;SDO is output
 		MOVLW		0xFF
 		MOVWF		TRISD
 		CLRF		TRISE
 		MOVLW		0x00
 		MOVWF		SSPCON2
 		MOVLW		0xC0
-		MOVWF		SSPSTAT 
-		;BANCO 0
-		BANKSEL		PORTA
+		MOVWF		SSPSTAT------------------------BANCO 0-------------------------
+		MOVLW		0x
 		MOVLW		0x10
 		MOVWF		SSPCON
         BSF     	PORTA,RA5
 
-C_P     BCF     PORTA, RA5
-		MOVF	PORTD,W
-        ;MOVLW   0x0F        ;Entrada de datos
-        MOVWF   SSPBUF
-        BANKSEL TRISA
-EBF     BTFSS   SSPSTAT,BF
-        GOTO    EBF
-        BANKSEL PORTA
-        MOVF   SSPBUF,W
-		MOVWF	PORTB
-        ;MOVWF   XR          ;Salida de datos
-        BSF     PORTA,RA5
-        CALL    R10MS
-        GOTO    C_P
+C_P     CALL		R10MS
+		MOVF	 	PORTD,W			;Lectura de puertoD
+		;MOVLW		0x43
+		MOVWF		DatosOut
+		CALL		SEND
+		MOVF		DatosIn,W
+		MOVWF		PORTB			;Lectura de 
+		GOTO		C_P
+		
+SEND	BCF			PORTA,RA5
+		MOVF		DatosOut,W
+		MOVWF		SSPBUF
+		BANKSEL		TRISA
+ENV		BTFSS		SSPSTAT,BF
+		GOTO		ENV
+		BANKSEL		PORTA
+		MOVF		SSPBUF,W
+		MOVWF		DatosIn
+		BSF			PORTA,RA5
+		CALL		R10MS
+		RETURN
+		
 		
 R10MS
 		MOVLW 0Xfa

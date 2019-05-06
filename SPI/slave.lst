@@ -1,12 +1,11 @@
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  1
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-Warning[215]: Processor superseded by command line.  Verify processor symbol.
-                      00001                 PROCESSOR P16F887
-                      00002                 INCLUDE <P16F887.INC>
+                      00001                 PROCESSOR       PIC16F887
+                      00002                 INCLUDE         <P16F887.INC>
                       00001         LIST
                       00002 
                       00003 ;==========================================================================
@@ -16,61 +15,204 @@ Warning[215]: Processor superseded by command line.  Verify processor symbol.
                       00007 ;==========================================================================
                       00008 
                       00809         LIST
-2007   20D4           00003                 __CONFIG _CONFIG1, (_INTRC_OSC_NOCLKOUT & _WDT_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF &
+                      00003                 
+2007   20D4           00004                 __CONFIG _CONFIG1, (_INTRC_OSC_NOCLKOUT & _WDT_OFF & _PWRTE_OFF & _MCLRE_OFF & _CP_OFF &
                              _CPD_OFF & _BOR_OFF & _IESO_OFF & _FCMEN_OFF & _LVP_OFF & _DEBUG_OFF)
-2008   3FFF           00004                 __CONFIG _CONFIG2, (_WRT_OFF &_BOR40V)
-                      00005 
-                      00006 
-0000                  00007                 ORG                     0x00
-                      00008                 
-0000   1683 1703      00009                 BANKSEL         ANSEL
+2008   3FFF           00005                 __CONFIG _CONFIG2, (_WRT_OFF & _BOR40V)
+                      00006                 
+                      00007 ;----- VARIABLES A UTILIZAR. 
+  00000021            00008 DIN             EQU             0x21
+  00000022            00009 DOUT    EQU             0x22
+  00000023            00010 DUTYON  EQU             0x23
+  00000024            00011 DUTYOFF EQU             0x24
+  00000025            00012 LSB             EQU             0x25
+                      00013 ;-----COMIENZO DE PROGRAMA.
+0000                  00014                 ORG             0x00
+                      00015                 
+                      00016 ;-----GESTION DE ENTRADAS ANALOGICAS. 
+                      00017         ;------BANCO 3
+                      00018                 
+0000   1683 1703      00019                 BANKSEL         ANSEL
+0002   3020           00020                 MOVLW           b'00100000'
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0002   0188           00010                 CLRF            ANSEL
+0003   0088           00021                 MOVWF           ANSEL                           ;AN5-RE0 habilitda
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0003   0189           00011                 CLRF            ANSELH
-                      00012                 
-0004   1683 1303      00013                 BANKSEL         TRISA
-0006   30FF           00014                 MOVLW           0xFF;
+0004   0189           00022                 CLRF            ANSELH
+                      00023 
+                      00024 ;-----REGISTROS DE CONFIGURACION
+                      00025         ;------BANCO 1
+0005   1683 1303      00026                 BANKSEL         TRISA
+0007   3020           00027                 MOVLW           b'00100000'                     
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0007   0085           00015                 MOVWF           TRISA
+0008   0085           00028                 MOVWF           TRISA                           ;RA5 como entrada SPI-SS
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0008   0186           00016                 CLRF            TRISB
-0009   3018           00017                 MOVLW           b'00011000'
+0009   0186           00029                 CLRF            TRISB
+000A   3018           00030                 MOVLW           b'00011000'                     
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000A   0187           00018                 CLRF            TRISC
+000B   0087           00031                 MOVWF           TRISC                           ;RC2 como salida CCP1
+                      00032                                                                                 ;RC3 como entrada SCK
+                      00033                                                                                 ;RC4 como entrada de dat
+                            os SPI-SDI
+                      00034                                                                                 ;RC5 como salida de dato
+                            s SPI-SDO
+000C   30FF           00035                 MOVLW           b'11111111'                     
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000B   0188           00019                 CLRF            TRISD
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000C   0189           00020                 CLRF            TRISE
-000D   3000           00021                 MOVLW           0x00
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000E   0091           00022                 MOVWF           SSPCON2 
-000F   3040           00023                 MOVLW           0x40
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0010   0094           00024                 MOVWF           SSPSTAT 
-0011   1283 1303      00025                 BANKSEL         PORTA
-0013   3014           00026                 MOVLW           0x14
-0014   0094           00027                 MOVWF           SSPCON
-                      00028 
-0015   0000           00029 C_P     NOP
-0016   1683 1303      00030         BANKSEL TRISA
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0018   1C14           00031 E_BF    BTFSS   SSPSTAT,BF
-0019   2818           00032         GOTO    E_BF
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  2
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-001A   1283 1303      00033         BANKSEL PORTA
-001C   0813           00034         MOVF    SSPBUF,W
-001D   0088           00035         MOVWF   PORTD
-001E   30F0           00036         MOVLW   0xF0        ;Salida de datos PORTB
-001F   0093           00037         MOVWF   SSPBUF
-0020   2815           00038         GOTO    C_P   
-                      00039                 END
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  3
+000D   0088           00036                 MOVWF           TRISD                           ;Puerto D como entrada digital
+000E   3001           00037                 MOVLW           b'00000001'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000F   0089           00038                 MOVWF           TRISE                           ;Re0 como entrada analogica
+                      00039                 ;----CONFIGURANDO SSPCON2
+0010   3000           00040                 MOVLW           0x00
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0011   0091           00041                 MOVWF           SSPCON2                         ;Modulo I2C apagado
+                      00042                 ;----CONFIGURANDO SSPSTAT
+0012   3000           00043                 MOVLW           0x00            
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0013   0094           00044                 MOVWF           SSPSTAT                         ;
+                      00045                 ;----CONFIGURANDO TRM0 COMO CONTADOR 
+0014   30D7           00046                 MOVLW           0xD7                            ;Prescaler 256 TMR0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0015   0081           00047                 MOVWF           OPTION_REG
+                      00048                 ;----CONFIGURANDO REGISTRO ADCON1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0016   019F           00049                 CLRF            ADCON1                          ;Justificacion izquierda.
+0017   30BF           00050                 MOVLW           0xBF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0018   0092           00051                 MOVWF           PR2
+                      00052         ;------BANCO 0
+0019   1283 1303      00053                 BANKSEL         PORTA
+                      00054                 ;CLRF           PORTA
+001B   0186           00055                 CLRF            PORTB
+001C   0187           00056                 CLRF            PORTC
+                      00057                 ;CLRF           PORTD
+                      00058                 ;CLRF           PORTE
+                      00059                 ;-----LIMPIAR BUFER SPI
+001D   0193           00060                 CLRF            SSPBUF
+                      00061                 ;-----HABILITAR INTERRUPCIONES
+001E   168B           00062                 BSF                     INTCON,T0IE
+                      00063                 ;-----CONFIGURACION SSPCON
+001F   3024           00064                 MOVLW           0x24            ;CKP=0
+0020   0094           00065                 MOVWF           SSPCON
+                      00066                 ;----CONFIGURANDO ADCON0
+0021   3015           00067                 MOVLW           0x15            ;Fosc/2 AN5 
+0022   009F           00068                 MOVWF           ADCON0
+                      00069 
+                      00070                 
+                      00071 
+                      00072 ;-------INICIO DE FUNCIONALIDAD
+                      00073 
+0023                  00074 MAIN            ;----- Se envía basura y se recibe PORTD(Se muestra en PORTB)
+0023   0000           00075                         NOP
+0024   1683 1303      00076                         BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0026   1C14           00077                         BTFSS           SSPSTAT,BF
+0027   2826           00078                         GOTO            $-1
+0028   1283 1303      00079                         BANKSEL         PORTA                   ;BANCO 0
+002A   0813           00080                         MOVF            SSPBUF,W                
+002B   0086           00081                         MOVWF           PORTB
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00082                 
+                      00083                 ;-----Se envía PORTD y se recibe 8Bits ADC (Se muestra en PWM)
+002C   0808           00084                         MOVF            PORTD,W
+002D   0093           00085                         MOVWF           SSPBUF
+002E   1683 1303      00086                         BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0030   1C14           00087                         BTFSS           SSPSTAT,BF
+0031   2830           00088                         GOTO            $-1
+0032   1283 1303      00089                         BANKSEL         PORTA
+0034   0813           00090                         MOVF            SSPBUF,W
+0035   0095           00091                         MOVWF           CCPR1L
+                      00092 ;
+                      00093                 ;----Se envia 8bits ADC y se recibe 2Bits ADC(Se muestra en PWM)
+0036   3015           00094                         MOVLW           b'00010101'
+0037   009F           00095                         MOVWF           ADCON0
+0038   0000           00096                         NOP
+0039   149F           00097                         BSF                     ADCON0,GO
+003A   189F           00098                         BTFSC           ADCON0,GO
+003B   283A           00099                         GOTO            $-1
+003C   081E           00100                         MOVF            ADRESH,W
+003D   0093           00101                         MOVWF           SSPBUF
+003E   1683 1303      00102                         BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0040   1C14           00103                         BTFSS           SSPSTAT,BF
+0041   2840           00104                         GOTO            $-1
+0042   1283 1303      00105                         BANKSEL         PORTA
+0044   0813           00106                         MOVF            SSPBUF,W
+0045   0097           00107                         MOVWF           CCP1CON
+                      00108 
+                      00109                 ;----Se envia 2bits ADC y se recibe basura.
+0046   1683 1303      00110                         BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0048   081E           00111                         MOVF            ADRESL,W
+0049   1283 1303      00112                         BANKSEL         PORTA
+004B   00A5           00113                         MOVWF           LSB
+004C   0CA5           00114                         RRF                     LSB,F
+004D   0CA5           00115                         RRF                     LSB,F
+004E   0C25           00116                         RRF                     LSB,W
+004F   0093           00117                         MOVWF           SSPBUF
+0050   1683 1303      00118                         BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0052   1C14           00119                         BTFSS           SSPSTAT,BF
+0053   2852           00120                         GOTO            $-1
+0054   1283 1303      00121                         BANKSEL         PORTA
+0056   0813           00122                         MOVF            SSPBUF,W
+                      00123 
+0057   3080           00124                 MOVLW           0x80                    ;10000000
+0058   0095           00125                 MOVWF           CCPR1L
+0059   009B           00126                 MOVWF           CCPR2L
+                      00127                         
+005A   300C           00128                 MOVLW           0x0C                    ;00001100 =>00SALIDA SIMPLE/00MODO PWM/1100 MODO
+                             PWM
+005B   0097           00129                 MOVWF           CCP1CON                 ;SALIDA PWM MEJORADA
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+005C   009D           00130                 MOVWF           CCP2CON                 ;SALIDA PWM
+005D   1412           00131                 BSF                     T2CON,0
+005E   1492           00132                 BSF                     T2CON,1
+005F   1512           00133                 BSF                     T2CON,TMR2ON
+                      00134 
+0060   2823           00135                 GOTO            MAIN                    ;REGRESO A TRANSFERENCIA
+                      00136 
+                      00137 ;------FUNCION DE RECEPCION--------             
+0061   0000           00138 RECEIVE NOP
+0062   1683 1303      00139                 BANKSEL         TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0064   1C14           00140                 BTFSS           SSPSTAT,BF              ;TERMINO LA RECEPCION?
+0065   2864           00141                 GOTO            $-1
+0066   0822           00142                 MOVF            DOUT,W  
+0067   0093           00143                 MOVWF           SSPBUF  
+0068   1283 1303      00144                 BANKSEL         PORTA
+006A   0813           00145                 MOVF            SSPBUF,W                ;LECTURA DE DATOS DEL MASTER
+006B   00A1           00146                 MOVWF           DIN
+                      00147                                 ;ESCRITURA DE DATOS PARA EL MASTER
+006C   0008           00148                 RETURN
+                      00149 
+                      00150 ;------RETARDO DE 10.25ms---------      
+006D   0000           00151 R10MS   NOP
+006E   1283 1303      00152                 BANKSEL         PORTA
+0070   30D8           00153                 MOVLW           0xD8
+0071   0081           00154                 MOVWF           TMR0
+0072   1D0B           00155                 BTFSS           INTCON,T0IF
+0073   2872           00156                 GOTO            $-1
+0074   110B           00157                 BCF                     INTCON,T0IF
+0075   0008           00158                 RETURN
+                      00159                 END
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  5
 
 
 SYMBOL TABLE
@@ -129,7 +271,7 @@ BRG6                              00000006
 BRG7                              00000007
 BRG8                              00000000
 BRG9                              00000001
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  4
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  6
 
 
 SYMBOL TABLE
@@ -188,7 +330,7 @@ CHS0                              00000002
 CHS1                              00000003
 CHS2                              00000004
 CHS3                              00000005
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  5
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  7
 
 
 SYMBOL TABLE
@@ -201,7 +343,6 @@ CM2CON0                           00000108
 CM2CON1                           00000109
 CREN                              00000004
 CSRC                              00000007
-C_P                               00000015
 D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
@@ -209,6 +350,10 @@ DC1B0                             00000004
 DC1B1                             00000005
 DC2B0                             00000004
 DC2B1                             00000005
+DIN                               00000021
+DOUT                              00000022
+DUTYOFF                           00000024
+DUTYON                            00000023
 D_A                               00000005
 D_NOT_A                           00000005
 ECCPAS                            0000009C
@@ -226,7 +371,6 @@ EEDATH                            0000010E
 EEIE                              00000004
 EEIF                              00000004
 EEPGD                             00000007
-E_BF                              00000018
 F                                 00000001
 FERR                              00000002
 FSR                               00000004
@@ -245,14 +389,14 @@ INDF                              00000000
 INTCON                            0000000B
 INTE                              00000004
 INTEDG                            00000006
-INTF                              00000001
-IOCB                              00000096
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  6
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  8
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+INTF                              00000001
+IOCB                              00000096
 IOCB0                             00000000
 IOCB1                             00000001
 IOCB2                             00000002
@@ -265,7 +409,9 @@ IRCF0                             00000004
 IRCF1                             00000005
 IRCF2                             00000006
 IRP                               00000007
+LSB                               00000025
 LTS                               00000001
+MAIN                              00000023
 MC1OUT                            00000007
 MC2OUT                            00000006
 MSK                               00000093
@@ -302,16 +448,16 @@ P                                 00000004
 P1M0                              00000006
 P1M1                              00000007
 PCL                               00000002
-PCLATH                            0000000A
-PCON                              0000008E
-PDC0                              00000000
-PDC1                              00000001
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  7
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE  9
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+PCLATH                            0000000A
+PCON                              0000008E
+PDC0                              00000000
+PDC1                              00000001
 PDC2                              00000002
 PDC3                              00000003
 PDC4                              00000004
@@ -343,6 +489,7 @@ PULSR                             00000002
 PULSS                             00000003
 PWM1CON                           0000009B
 R                                 00000002
+R10MS                             0000006D
 RA0                               00000000
 RA1                               00000001
 RA2                               00000002
@@ -360,17 +507,17 @@ RB5                               00000005
 RB6                               00000006
 RB7                               00000007
 RBIE                              00000003
-RBIF                              00000000
-RC0                               00000000
-RC1                               00000001
-RC2                               00000002
-RC3                               00000003
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  8
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 10
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
 RC4                               00000004
 RC5                               00000005
 RC6                               00000006
@@ -398,6 +545,7 @@ RE1                               00000001
 RE2                               00000002
 RE3                               00000003
 READ_WRITE                        00000002
+RECEIVE                           00000061
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
@@ -418,18 +566,18 @@ SPEN                              00000007
 SR0                               00000006
 SR1                               00000007
 SRCON                             00000185
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 SREN                              00000005
 SSPADD                            00000093
 SSPBUF                            00000013
 SSPCON                            00000014
 SSPCON2                           00000091
 SSPEN                             00000005
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE  9
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 SSPIE                             00000003
 SSPIF                             00000003
 SSPM0                             00000000
@@ -477,18 +625,18 @@ TMR1ON                            00000000
 TMR2                              00000011
 TMR2IE                            00000001
 TMR2IF                            00000001
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TMR2ON                            00000002
 TOUTPS0                           00000003
 TOUTPS1                           00000004
 TOUTPS2                           00000005
 TOUTPS3                           00000006
 TRISA                             00000085
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE 10
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISA0                            00000000
 TRISA1                            00000001
 TRISA2                            00000002
@@ -536,18 +684,18 @@ TUN2                              00000002
 TUN3                              00000003
 TUN4                              00000004
 TX8_9                             00000006
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TX9                               00000006
 TX9D                              00000000
 TXD8                              00000000
 TXEN                              00000005
 TXIE                              00000004
 TXIF                              00000004
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE 11
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TXREG                             00000019
 TXSTA                             00000098
 UA                                00000001
@@ -595,18 +743,18 @@ _BOREN_OFF                        00003CFF
 _BOREN_ON                         00003FFF
 _BOREN_SBODEN                     00003DFF
 _BOR_NSLEEP                       00003EFF
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _BOR_OFF                          00003CFF
 _BOR_ON                           00003FFF
 _BOR_SBODEN                       00003DFF
 _CONFIG1                          00002007
 _CONFIG2                          00002008
 _CPD_OFF                          00003FFF
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE 12
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _CPD_ON                           00003F7F
 _CP_OFF                           00003FFF
 _CP_ON                            00003FBF
@@ -654,26 +802,31 @@ _WRT_1FOURTH                      00003BFF
 _WRT_256                          00003DFF
 _WRT_HALF                         000039FF
 _WRT_OFF                          00003FFF
+MPASM  5.51                         SLAVE.ASM   5-2-2019  16:34:18         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _XT_OSC                           00003FF9
 __16F887                          00000001
 __DEBUG                           1
-MPASM  5.51                         SLAVE.ASM   4-15-2019  13:59:58         PAGE 13
 
 
 MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
 
-
-0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX X--------------- ----------------
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXX----------
 2000 : -------XX------- ---------------- ---------------- ----------------
 
 All other memory blocks unused.
 
-Program Memory Words Used:    33
-Program Memory Words Free:  8159
+Program Memory Words Used:   118
+Program Memory Words Free:  8074
 
 
 Errors   :     0
-Warnings :     1 reported,     0 suppressed
-Messages :    10 reported,     0 suppressed
+Warnings :     0 reported,     0 suppressed
+Messages :    18 reported,     0 suppressed
 
 
