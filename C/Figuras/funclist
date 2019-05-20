@@ -1,0 +1,10 @@
+_lcd_puts: CODE, 1758 0 36
+_lcd_putch: CODE, 1655 0 11
+_main: CODE, 1887 0 161
+_lcd_clear: CODE, 1681 0 19
+_lcd_goto: CODE, 1644 0 11
+_pause: CODE, 1700 0 27
+_lcd_write: CODE, 1727 0 31
+_msecbase: CODE, 1666 0 15
+_lcd_init: CODE, 1794 0 93
+Total: 404
